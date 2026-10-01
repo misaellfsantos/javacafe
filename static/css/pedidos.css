@@ -1,0 +1,759 @@
+:root {
+    --marrom-escuro: #2b1b14;
+    --marrom: #5a3828;
+    --cafe: #7b4b2a;
+    --bege: #f5eadc;
+    --creme: #fffaf4;
+    --dourado: #c58b55;
+    --texto: #3a2a22;
+    --branco: #ffffff;
+    --cinza: #777;
+    --verde: #4d7c52;
+}
+
+
+/* ==========================================
+   GERAL
+========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--creme);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar-java {
+    background: var(--marrom-escuro);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--branco) !important;
+}
+
+.navbar-brand i {
+    color: var(--dourado);
+    margin-right: 7px;
+}
+
+.navbar-java .nav-link {
+    color: #f7eee5 !important;
+    margin-left: 12px;
+    transition: 0.3s;
+}
+
+.navbar-java .nav-link:hover,
+.navbar-java .nav-link.active {
+    color: var(--dourado) !important;
+}
+
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.cabecalho-pedidos {
+    background:
+        linear-gradient(
+            rgba(43, 27, 20, 0.88),
+            rgba(43, 27, 20, 0.88)
+        ),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    padding: 75px 20px;
+    color: white;
+}
+
+.icone-cafe {
+    display: inline-flex;
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--dourado);
+
+    font-size: 2rem;
+
+    margin-bottom: 20px;
+}
+
+.cabecalho-pedidos h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cabecalho-pedidos p {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #eee;
+}
+
+
+/* ==========================================
+   ÁREA DO PEDIDO
+========================================== */
+
+.area-pedido {
+    padding-top: 55px;
+    padding-bottom: 70px;
+}
+
+
+/* ==========================================
+   CARD PEDIDO
+========================================== */
+
+.card-pedido {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px rgba(43, 27, 20, 0.08);
+}
+
+.titulo-card {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eee;
+
+    padding-bottom: 20px;
+
+    margin-bottom: 10px;
+}
+
+.titulo-card div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo-card i {
+    color: var(--dourado);
+    font-size: 1.5rem;
+}
+
+.titulo-card h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--marrom-escuro);
+}
+
+.titulo-card span {
+    color: var(--cinza);
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================
+   PEDIDO VAZIO
+========================================== */
+
+.pedido-vazio {
+    text-align: center;
+
+    padding: 65px 20px;
+
+    color: var(--cinza);
+}
+
+.pedido-vazio i {
+    font-size: 4rem;
+
+    color: #cbb8a7;
+
+    display: block;
+
+    margin-bottom: 20px;
+}
+
+.pedido-vazio h3 {
+    color: var(--marrom);
+    font-size: 1.4rem;
+}
+
+.pedido-vazio p {
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   BOTÃO JAVA
+========================================== */
+
+.btn-java {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    background: var(--cafe);
+    color: white;
+
+    text-decoration: none;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 22px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-java:hover {
+    background: var(--marrom-escuro);
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   PRODUTO
+========================================== */
+
+.produto-pedido {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 22px 5px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.produto-pedido:last-child {
+    border-bottom: none;
+}
+
+
+.produto-icone {
+    min-width: 58px;
+    height: 58px;
+
+    border-radius: 12px;
+
+    background: var(--bege);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--cafe);
+
+    font-size: 1.5rem;
+}
+
+
+.produto-info {
+    flex: 1;
+}
+
+.produto-info h3 {
+    margin: 0 0 5px;
+
+    font-size: 1.05rem;
+
+    color: var(--marrom-escuro);
+}
+
+.produto-info span {
+    color: var(--cinza);
+
+    font-size: 0.85rem;
+}
+
+
+/* ==========================================
+   QUANTIDADE
+========================================== */
+
+.controle-quantidade {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.controle-quantidade button {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid #ddd;
+
+    background: white;
+
+    color: var(--cafe);
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+.controle-quantidade button:hover {
+    background: var(--bege);
+}
+
+.controle-quantidade strong {
+    min-width: 20px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   PREÇO
+========================================== */
+
+.preco-produto {
+    min-width: 95px;
+
+    text-align: right;
+
+    font-weight: bold;
+
+    color: var(--cafe);
+}
+
+
+/* ==========================================
+   REMOVER
+========================================== */
+
+.btn-remover {
+    border: none;
+
+    background: transparent;
+
+    color: #a65b4c;
+
+    font-size: 1.1rem;
+
+    transition: 0.2s;
+}
+
+.btn-remover:hover {
+    color: #7b2d20;
+    transform: scale(1.1);
+}
+
+
+/* ==========================================
+   RESUMO
+========================================== */
+
+.resumo-pedido {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px rgba(43, 27, 20, 0.08);
+
+    position: sticky;
+    top: 20px;
+}
+
+
+.resumo-titulo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.resumo-titulo i {
+    color: var(--dourado);
+
+    font-size: 1.4rem;
+}
+
+.resumo-titulo h2 {
+    margin: 0;
+
+    color: var(--marrom-escuro);
+
+    font-size: 1.35rem;
+}
+
+
+.linha-resumo {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    color: #666;
+}
+
+.linha-resumo strong {
+    color: var(--texto);
+}
+
+
+.resumo-pedido hr {
+    margin: 20px 0;
+}
+
+
+.total-pedido {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.total-pedido span {
+    font-size: 1.1rem;
+
+    font-weight: bold;
+}
+
+.total-pedido strong {
+    color: var(--cafe);
+
+    font-size: 1.5rem;
+}
+
+
+/* ==========================================
+   FINALIZAR
+========================================== */
+
+.btn-finalizar {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    background: var(--verde);
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 1rem;
+
+    transition: 0.3s;
+}
+
+.btn-finalizar:hover:not(:disabled) {
+    background: #3e6842;
+
+    transform: translateY(-2px);
+}
+
+.btn-finalizar:disabled {
+    background: #bbb;
+
+    cursor: not-allowed;
+}
+
+
+.btn-continuar {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 15px;
+
+    color: var(--cafe);
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+}
+
+.btn-continuar:hover {
+    color: var(--marrom-escuro);
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.info-pedido {
+    background: var(--bege);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-top: 20px;
+}
+
+.info-item {
+    display: flex;
+
+    gap: 15px;
+
+    padding: 10px 0;
+}
+
+.info-item + .info-item {
+    border-top: 1px solid rgba(90, 56, 40, 0.15);
+}
+
+.info-item > i {
+    color: var(--cafe);
+
+    font-size: 1.4rem;
+}
+
+.info-item strong {
+    display: block;
+
+    color: var(--marrom-escuro);
+
+    margin-bottom: 4px;
+}
+
+.info-item p {
+    margin: 0;
+
+    font-size: 0.85rem;
+
+    color: #75665d;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-java {
+    border: none;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.modal-java .modal-body {
+    padding: 45px 30px;
+}
+
+.sucesso-icon {
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #e5f2e5;
+
+    color: var(--verde);
+
+    border-radius: 50%;
+
+    font-size: 2.5rem;
+}
+
+.modal-java h2 {
+    color: var(--marrom-escuro);
+
+    font-weight: bold;
+}
+
+.modal-java p {
+    color: var(--cinza);
+}
+
+.numero-pedido {
+    background: var(--bege);
+
+    padding: 12px;
+
+    border-radius: 10px;
+}
+
+.numero-pedido strong {
+    color: var(--cafe);
+}
+
+.valor-final {
+    margin: 20px 0;
+
+    font-size: 1.1rem;
+}
+
+.valor-final strong {
+    color: var(--cafe);
+
+    font-size: 1.4rem;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer-java {
+    background: var(--marrom-escuro);
+
+    color: #eee;
+
+    padding: 45px 0 20px;
+}
+
+.footer-java h3 {
+    color: white;
+
+    font-weight: bold;
+}
+
+.footer-java h3 i {
+    color: var(--dourado);
+}
+
+.footer-java p {
+    color: #d6ccc5;
+}
+
+.footer-java hr {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.copyright {
+    text-align: center;
+
+    font-size: 0.85rem;
+
+    margin: 0;
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 768px) {
+
+    .cabecalho-pedidos {
+        padding: 55px 20px;
+    }
+
+    .cabecalho-pedidos h1 {
+        font-size: 2.2rem;
+    }
+
+    .area-pedido {
+        padding-top: 35px;
+    }
+
+    .produto-pedido {
+        flex-wrap: wrap;
+    }
+
+    .produto-info {
+        min-width: calc(100% - 80px);
+    }
+
+    .controle-quantidade {
+        margin-left: 73px;
+    }
+
+    .preco-produto {
+        margin-left: auto;
+    }
+
+    .btn-remover {
+        margin-left: 5px;
+    }
+
+    .resumo-pedido {
+        position: static;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .card-pedido,
+    .resumo-pedido {
+        padding: 20px;
+    }
+
+    .titulo-card {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .produto-pedido {
+        gap: 10px;
+    }
+
+    .produto-icone {
+        min-width: 50px;
+        height: 50px;
+    }
+
+    .controle-quantidade {
+        margin-left: 0;
+    }
+
+    .preco-produto {
+        min-width: auto;
+    }
+
+}

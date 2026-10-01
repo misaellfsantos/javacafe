@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Java Café - café, ambiente acolhedor, história, localização e pedidos.">
+    <title>Java Café - Página Principal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#inicio">
+                    <i class="fas fa-mug-hot"></i> Java Café
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="templates/cardabio.html">Cardápio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="templates/pedidos.html">Pedidos</a></li>
+                     
+                
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- CARROSSEL NO COMEÇO -->
+        <section id="inicio">
+
+            <div id="carouselCafe" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="0" class="active"
+                        aria-current="true"></button>
+                    <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="2"></button>
+                </div>
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img src="static/img/salao_principal.png" class="d-block w-100" alt="Salão principal do Java Café">
+                        <div class="carousel-caption">
+                            <h1>Java Café</h1>
+                            <p>Um espaço para apreciar café, conforto e bons momentos.</p>
+                            <a href="#ambientes" class="btn btn-cafe">Ver ambientes</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="static/img/salao_segundario.png" class="d-block w-100" alt="Espaço secundário do Java Café">
+                        <div class="carousel-caption">
+                            <h1>Ambientes acolhedores</h1>
+                            <p>Espaços preparados para encontros, estudos, trabalho e descanso.</p>
+                            <a href="#ambientes" class="btn btn-cafe">Ver ambientes</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="static/img/area_de_leitura.png" class="d-block w-100" alt="Área de leitura do Java Café">
+                        <div class="carousel-caption">
+                            <h1>Seu momento no Java Café</h1>
+                            <p>Conheça nossos ambientes e aproveite uma experiência acolhedora.</p>
+                            <a href="#ambientes" class="btn btn-cafe">Ver ambientes</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCafe" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselCafe" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- IDEIA DO NEGÓCIO -->
+        <section id="negocio" class="section">
+            <div class="container">
+
+                <h2 class="section-title">Ideia do Negócio</h2>
+
+                <p class="section-subtitle">
+                    O Java Café foi criado com a proposta de unir qualidade,
+                    conforto e uma experiência agradável em torno do café.
+                </p>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="idea-box">
+                            <div class="idea-icon"><i class="fas fa-mug-hot"></i></div>
+                            <h4>Café de qualidade</h4>
+                            <p>
+                                Cafés preparados com cuidado, valorizando aroma,
+                                sabor e a experiência de cada xícara.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="idea-box">
+                            <div class="idea-icon"><i class="fas fa-couch"></i></div>
+                            <h4>Ambiente acolhedor</h4>
+                            <p>
+                                Um lugar confortável para conversar, estudar,
+                                trabalhar ou aproveitar uma pausa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="idea-box">
+                            <div class="idea-icon"><i class="fas fa-heart"></i></div>
+                            <h4>Boa experiência</h4>
+                            <p>
+                                A proposta é oferecer atendimento próximo,
+                                conforto e bons momentos para nossos clientes.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- AMBIENTES -->
+        <section id="ambientes" class="section">
+            <div class="container">
+
+                <h2 class="section-title">Ambientes Internos</h2>
+
+                <p class="section-subtitle">
+                    Conheça alguns dos espaços preparados para receber nossos clientes.
+                </p>
+
+                <div class="row g-4">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="environment-card">
+                            <img src="static/img/salao_principal.png" alt="Salão principal">
+                            <div class="card-body">
+                                <h5>Salão principal</h5>
+                                <p>Ambiente confortável para aproveitar o café com tranquilidade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="environment-card">
+                            <img src="static/img/salao_segundario.png" alt="Espaço para encontros">
+                            <div class="card-body">
+                                <h5>Espaço para encontros</h5>
+                                <p>Mesas preparadas para encontros, conversas e momentos especiais.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="environment-card">
+                            <img src="static/img/area_de_leitura.png" alt="Área de leitura">
+                            <div class="card-body">
+                                <h5>Canto aconchegante</h5>
+                                <p>Um espaço tranquilo para leitura, estudos ou trabalho.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCALIZAÇÃO -->
+        <section id="localizacao" class="section location">
+            <div class="container">
+
+                <h2 class="section-title">Localização</h2>
+
+                <p class="section-subtitle">
+                    Encontre o Java Café e venha conhecer nosso espaço.
+                </p>
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-7">
+                        <div class="map-box">
+                            <a class="map-button" href="https://www.google.com/maps/search/?api=1&query=São+Paulo,+SP"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-location-dot me-2"></i>
+                                Abrir no Google Maps
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="location-info">
+
+                            <h2>Venha nos visitar</h2>
+
+                            <div class="info-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div>
+                                    <h6>Endereço</h6>
+                                    <p>São Paulo - SP</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h6>Horário</h6>
+                                    <p>Segunda a domingo, das 08h às 20h</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTÓRIA -->
+        <section id="historia" class="section history">
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6">
+                        <img class="history-image"
+                            src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1000&q=85"
+                            alt="Café sendo preparado">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="history-text">
+                            <h2>A História do Café</h2>
+
+                            <p>
+                                A <strong>Java Café</strong> nasceu de um sonho simples:
+                                criar um lugar onde o café pudesse ser muito mais do que
+                                apenas uma bebida. A ideia era construir um espaço para
+                                encontros, conversas e bons momentos.
+                            </p>
+
+                            <p>
+                                Inspirada pela paixão pelo café e pela vontade de oferecer
+                                um ambiente confortável e acolhedor, a Java Café começou a
+                                construir sua identidade unindo cafés preparados com
+                                carinho, produtos saborosos e um espaço agradável.
+                            </p>
+
+                            <p>
+                                Com o passar do tempo, a cafeteria tornou-se um espaço para
+                                diferentes momentos: uma conversa entre amigos, uma reunião
+                                de trabalho, um momento de estudo ou simplesmente uma pausa
+                                para apreciar uma boa xícara de café.
+                            </p>
+
+                            <p>
+                                O nome <strong>Java Café</strong> representa nossa conexão
+                                com a cultura do café e com a experiência de descobrir
+                                novos sabores. Cada detalhe foi pensado para proporcionar
+                                uma experiência especial aos nossos clientes.
+                            </p>
+
+                            <p>
+                                Hoje, a Java Café continua com o mesmo propósito que deu
+                                origem ao negócio: oferecer <strong>café de qualidade,
+                                    um ambiente acolhedor e momentos especiais</strong> para
+                                cada pessoa que visita nossa cafeteria.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO SEPARADO -->
+        <section id="contato" class="section contact">
+            <div class="container">
+
+                <h2 class="section-title">Contato</h2>
+
+                <p class="section-subtitle text-light">
+                    Entre em contato com o Java Café.
+                </p>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="contact-box text-center">
+                            <i class="fas fa-phone mb-3"></i>
+                            <h5>Telefone</h5>
+                            <p>(11) 9999-9999</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-box text-center">
+                            <i class="fas fa-envelope mb-3"></i>
+                            <h5>E-mail</h5>
+                            <p>contato@javacafe.com</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-box text-center">
+                            <i class="fas fa-location-dot mb-3"></i>
+                            <h5>Localização</h5>
+                            <p>São Paulo - SP</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="mb-0">
+                &copy; 2026 Java Café. Todos os direitos reservados. ☕
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

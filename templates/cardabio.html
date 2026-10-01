@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Cardápio do Java Cafe. Confira nossos cafés, bebidas, doces e salgados.">
+
+    <meta name="keywords"
+        content="Java Cafe, cafeteria, café, cardápio, bebidas, doces, salgados">
+
+    <title>Java Cafe - Cardápio</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/cardabio.css">
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="../index.html">
+
+                <i class="bi bi-cup-hot-fill"></i>
+
+                Java Cafe
+
+            </a>
+
+
+            <button
+                class="navbar-toggler bg-light"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuNavbar">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div
+                class="collapse navbar-collapse"
+                id="menuNavbar">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="../index.html">
+
+                            Início
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link active"
+                            href="../templates/pedidos.html">
+
+                            Pedidos
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="menu-header">
+
+        <div class="menu-header-content">
+
+            <h1>
+
+                <i class="bi bi-cup-hot-fill"></i>
+
+                Nosso Cardápio
+
+            </h1>
+
+
+            <p>
+
+                Sabores preparados para tornar seu momento no
+
+                <strong>Java Cafe</strong>
+
+                ainda mais especial.
+
+                Escolha seu café, acompanhe com um doce
+
+                e aproveite nosso ambiente acolhedor.
+
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CATEGORIAS
+    ========================== -->
+
+    <div class="category-menu">
+
+        <div class="container">
+
+            <div class="nav">
+
+                <a href="#cafes">
+
+                    <i class="bi bi-cup-hot"></i>
+
+                    Cafés
+
+                </a>
+
+
+                <a href="#bebidas">
+
+                    <i class="bi bi-cup-straw"></i>
+
+                    Bebidas
+
+                </a>
+
+
+                <a href="#doces">
+
+                    <i class="bi bi-cookie"></i>
+
+                    Doces
+
+                </a>
+
+
+                <a href="#salgados">
+
+                    <i class="bi bi-egg-fried"></i>
+
+                    Salgados
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CAFÉS
+    ========================== -->
+
+    <section class="section" id="cafes">
+
+        <div class="container">
+
+            <h2 class="section-title">
+
+                Nossos Cafés
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Grãos selecionados e preparados de diferentes formas
+
+                para você aproveitar todo o sabor e aroma do café.
+
+            </p>
+
+
+            <div class="row g-4">
+
+
+                <!-- CAFÉ ESPRESSO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=900&q=85"
+                                alt="Café Espresso">
+
+                            <span class="category-badge">
+
+                                Clássico
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Café Espresso
+
+                            </h4>
+
+
+                            <p>
+
+                                Café intenso, aromático e encorpado,
+                                preparado na máquina para preservar
+                                todo o sabor dos grãos.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 6,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Café Espresso', 6)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CAPPUCCINO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=85"
+                                alt="Cappuccino">
+
+                            <span class="category-badge">
+
+                                Especial
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Cappuccino
+
+                            </h4>
+
+
+                            <p>
+
+                                Espresso combinado com leite cremoso
+                                e uma delicada camada de espuma.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 8,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Cappuccino', 8)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LATTE -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=900&q=85"
+                                alt="Café Latte">
+
+                            <span class="category-badge">
+
+                                Cremoso
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Café Latte
+
+                            </h4>
+
+
+                            <p>
+
+                                Espresso suave com leite vaporizado,
+                                finalizado com uma espuma delicada.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 10,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Café Latte', 10)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MOCHA -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=900&q=85"
+                                alt="Café Mocha">
+
+                            <span class="category-badge">
+
+                                Chocolate
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Mocha
+
+                            </h4>
+
+
+                            <p>
+
+                                Uma combinação equilibrada de espresso,
+                                leite cremoso e chocolate.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 9,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Mocha', 9)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AMERICANO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=85"
+                                alt="Café Americano">
+
+                            <span class="category-badge">
+
+                                Tradicional
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Café Americano
+
+                            </h4>
+
+
+                            <p>
+
+                                Espresso diluído em água quente,
+                                proporcionando uma bebida leve e aromática.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 7,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Café Americano', 7)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MACCHIATO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=900&q=85"
+                                alt="Café Macchiato">
+
+                            <span class="category-badge">
+
+                                Especial
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Macchiato
+
+                            </h4>
+
+
+                            <p>
+
+                                Espresso marcante suavizado com
+                                uma pequena quantidade de leite.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 8,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Macchiato', 8)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DESTAQUE
+    ========================== -->
+
+    <section class="highlight">
+
+        <div class="container">
+
+            <h2>
+
+                ☕ Mais que café, uma experiência.
+
+            </h2>
+
+
+            <p>
+
+                No Java Cafe, cada bebida é preparada para combinar
+                com o momento. Seja para trabalhar, conversar com
+                amigos ou simplesmente relaxar, temos um café esperando
+                por você.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BEBIDAS
+    ========================== -->
+
+    <section class="section" id="bebidas">
+
+        <div class="container">
+
+            <h2 class="section-title">
+
+                Bebidas
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Opções refrescantes e saborosas para acompanhar
+                seu momento no Java Cafe.
+
+            </p>
+
+
+            <div class="row g-4">
+
+
+                <!-- SUCO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85"
+                                alt="Suco Natural">
+
+                            <span class="category-badge">
+
+                                Natural
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Suco Natural
+
+                            </h4>
+
+
+                            <p>
+
+                                Suco preparado na hora com frutas
+                                selecionadas.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 7,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Suco Natural', 7)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REFRIGERANTE -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85"
+                                alt="Refrigerante">
+
+                            <span class="category-badge">
+
+                                Gelado
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Refrigerante
+
+                            </h4>
+
+
+                            <p>
+
+                                Bebida gelada para acompanhar
+                                seu café ou lanche.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 6,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Refrigerante', 6)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ÁGUA -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=900&q=85"
+                                alt="Água Mineral">
+
+                            <span class="category-badge">
+
+                                Refrescante
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Água Mineral
+
+                            </h4>
+
+
+                            <p>
+
+                                Água mineral servida gelada.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 4,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Água Mineral', 4)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DOCES
+    ========================== -->
+
+    <section class="section" id="doces">
+
+        <div class="container">
+
+            <h2 class="section-title">
+
+                Doces
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Doces preparados para combinar perfeitamente
+                com uma boa xícara de café.
+
+            </p>
+
+
+            <div class="row g-4">
+
+
+                <!-- BOLO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                                alt="Bolo de Chocolate">
+
+                            <span class="category-badge">
+
+                                Favorito
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Bolo de Chocolate
+
+                            </h4>
+
+
+                            <p>
+
+                                Bolo macio de chocolate com cobertura
+                                cremosa.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 10,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Bolo de Chocolate', 10)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DONUT -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85"
+                                alt="Donut">
+
+                            <span class="category-badge">
+
+                                Doce
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Donut Artesanal
+
+                            </h4>
+
+
+                            <p>
+
+                                Donut macio com cobertura e
+                                finalização especial.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 8,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Donut Artesanal', 8)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHEESECAKE -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
+                                alt="Cheesecake">
+
+                            <span class="category-badge">
+
+                                Especial
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Cheesecake
+
+                            </h4>
+
+
+                            <p>
+
+                                Cheesecake cremoso servido com
+                                cobertura de frutas vermelhas.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 12,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Cheesecake', 12)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SALGADOS
+    ========================== -->
+
+    <section class="section" id="salgados">
+
+        <div class="container">
+
+            <h2 class="section-title">
+
+                Salgados
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Lanches preparados para acompanhar seu café
+                durante qualquer hora do dia.
+
+            </p>
+
+
+            <div class="row g-4">
+
+
+                <!-- COXINHA -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85"
+                                alt="Coxinha">
+
+                            <span class="category-badge">
+
+                                Tradicional
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Coxinha Artesanal
+
+                            </h4>
+
+
+                            <p>
+
+                                Massa crocante recheada com frango
+                                temperado e cremoso.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 8,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Coxinha Artesanal', 8)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SANDUÍCHE -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=85"
+                                alt="Sanduíche">
+
+                            <span class="category-badge">
+
+                                Lanche
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Sanduíche da Casa
+
+                            </h4>
+
+
+                            <p>
+
+                                Pão artesanal, queijo, presunto,
+                                folhas frescas e molho especial.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 18,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Sanduíche da Casa', 18)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PÃO DE QUEIJO -->
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <div class="menu-card-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85"
+                                alt="Pão de Queijo">
+
+                            <span class="category-badge">
+
+                                Mineiro
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="menu-card-body">
+
+                            <h4>
+
+                                Pão de Queijo
+
+                            </h4>
+
+
+                            <p>
+
+                                Pão de queijo quentinho, macio por dentro
+                                e levemente crocante por fora.
+
+                            </p>
+
+
+                            <div class="card-footer-menu">
+
+                                <span class="price">
+
+                                    R$ 7,00
+
+                                </span>
+
+
+                                <button
+                                    class="btn-pedido"
+                                    onclick="irParaPedidos('Pão de Queijo', 7)">
+
+                                    Adicionar
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTATO
+    ========================== -->
+
+    <section class="contact" id="contato">
+
+        <div class="container">
+
+            <h2 class="section-title mb-5">
+
+                Java Cafe
+
+            </h2>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="contact-box">
+
+                        <h5>
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            Localização
+
+                        </h5>
+
+
+                        <p>
+
+                            Visite o Java Cafe e aproveite
+                            nosso ambiente acolhedor.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="contact-box">
+
+                        <h5>
+
+                            <i class="bi bi-clock-fill"></i>
+
+                            Horário
+
+                        </h5>
+
+
+                        <p>
+
+                            Segunda a sábado<br>
+
+                            08:00 às 20:00
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="contact-box">
+
+                        <h5>
+
+                            <i class="bi bi-instagram"></i>
+
+                            Redes sociais
+
+                        </h5>
+
+
+                        <p>
+
+                            Acompanhe o Java Cafe
+                            nas redes sociais.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <p class="mb-0">
+
+                © 2026 Java Cafe -
+                Todos os direitos reservados.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function irParaPedidos(produto, preco) {
+
+            const produtoCodificado =
+                encodeURIComponent(produto);
+
+            window.location.href =
+                "pedidos.html?produto=" +
+                produtoCodificado +
+                "&preco=" +
+                preco;
+
+        }
+
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+</body>
+
+</html>
