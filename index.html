@@ -29,11 +29,16 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         <li class="nav-item"><a class="nav-link" href="templates/cardapio.html">Cardápio</a></li>
                         <li class="nav-item"><a class="nav-link" href="templates/pedidos.html">Pedidos</a></li>
-                     
-                
+                        
+                        <!-- BOTÃO ADMIN ADICIONADO NA NAVBAR -->
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn btn-outline-warning btn-sm px-3 rounded-pill" href="templates/admin.html">
+                                <i class="fas fa-user-shield me-1"></i> Admin
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -344,10 +349,16 @@
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
             <p class="mb-0">
                 &copy; 2026 Java Café. Todos os direitos reservados. ☕
             </p>
+            <!-- LINK DISCRETO DE ADMIN NO FOOTER -->
+            <small>
+                <a href="templates/admin.html" class="text-white-50 text-decoration-none">
+                    <i class="fas fa-lock me-1"></i> Área Restrita (Admin)
+                </a>
+            </small>
         </div>
     </footer>
 

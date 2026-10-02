@@ -35,7 +35,7 @@
 
                 <i class="bi bi-cup-hot-fill"></i>
 
-                Java Cafe
+                Java Café
 
             </a>
 
@@ -112,7 +112,7 @@
             </h1>
 
             <p>
-                Confira seus produtos e finalize seu pedido no Java Cafe.
+                Confira seus produtos, escolha como prefere consumir e finalize seu pedido no Java Cafe.
             </p>
 
         </div>
@@ -131,6 +131,130 @@
             <!-- ITENS -->
 
             <div class="col-lg-8">
+
+                <!-- OPÇÕES DE CONSUMO (NOVO) -->
+
+                <div class="card-pedido mb-4">
+
+                    <div class="titulo-card">
+
+                        <div>
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            <h2>
+                                Opção de Consumo
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-3">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-4">
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="opcaoConsumo"
+                                        id="opcaoBalcao"
+                                        value="Balcão"
+                                        checked
+                                        onchange="alternarMesa()">
+
+                                    <label class="form-check-label" for="opcaoBalcao">
+
+                                        <i class="bi bi-shop"></i>
+
+                                        Comer no Balcão
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="opcaoConsumo"
+                                        id="opcaoMesa"
+                                        value="Mesa"
+                                        onchange="alternarMesa()">
+
+                                    <label class="form-check-label" for="opcaoMesa">
+
+                                        <i class="bi bi-table"></i>
+
+                                        Comer na Mesa
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="opcaoConsumo"
+                                        id="opcaoViagem"
+                                        value="Para Viagem"
+                                        onchange="alternarMesa()">
+
+                                    <label class="form-check-label" for="opcaoViagem">
+
+                                        <i class="bi bi-bag-check"></i>
+
+                                        Para Viagem
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CAMPO NÚMERO DA MESA -->
+
+                        <div id="campoMesa" class="mt-3" style="display: none;">
+
+                            <label for="numeroMesaInput" class="form-label">
+                                Número da Mesa:
+                            </label>
+
+                            <input
+                                type="number"
+                                id="numeroMesaInput"
+                                class="form-control"
+                                placeholder="Digite o número da mesa (ex: 4)"
+                                min="1">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LISTA DO PEDIDO -->
 
                 <div class="card-pedido">
 
@@ -369,6 +493,9 @@
                     </p>
 
 
+                    <p id="infoConsumoModal" style="font-weight: bold; color: #6f4e37;"></p>
+
+
                     <p>
 
                         Número do pedido:
@@ -497,6 +624,33 @@
             JSON.parse(
                 localStorage.getItem("javaCafePedido")
             ) || [];
+
+
+
+        // ==========================================
+        // MOSTRAR/OCULTAR CAMPO DA MESA
+        // ==========================================
+
+        function alternarMesa() {
+
+            const opcaoMesa =
+                document.getElementById("opcaoMesa").checked;
+
+            const campoMesa =
+                document.getElementById("campoMesa");
+
+
+            if (opcaoMesa) {
+
+                campoMesa.style.display = "block";
+
+            } else {
+
+                campoMesa.style.display = "none";
+
+            }
+
+        }
 
 
 
@@ -950,7 +1104,7 @@
 
 
         // ==========================================
-        // FINALIZAR PEDIDO
+        // FINALIZAR PEDIDO (INTEGRADO COM ADMIN)
         // ==========================================
 
         function finalizarPedido() {
@@ -964,6 +1118,34 @@
                 );
 
                 return;
+
+            }
+
+
+            // Opção de consumo escolhida pelo cliente
+
+            const opcaoConsumo =
+                document.querySelector('input[name="opcaoConsumo"]:checked').value;
+
+
+            let numeroMesa = "";
+
+
+            if (opcaoConsumo === "Mesa") {
+
+                numeroMesa =
+                    document.getElementById("numeroMesaInput").value.trim();
+
+
+                if (!numeroMesa) {
+
+                    alert("Por favor, informe o número da mesa!");
+
+                    document.getElementById("numeroMesaInput").focus();
+
+                    return;
+
+                }
 
             }
 
@@ -999,6 +1181,52 @@
                 );
 
 
+            // ======================================
+            // GRAVAÇÃO PARA O ADMIN
+            // ======================================
+
+            const novoPedidoAdmin = {
+
+                id: numero,
+
+                dataHora: new Date().toLocaleString("pt-BR"),
+
+                tipoConsumo: opcaoConsumo,
+
+                mesa: numeroMesa ? numeroMesa : "N/A",
+
+                itens: pedido,
+
+                subtotal: subtotal,
+
+                taxa: taxa,
+
+                total: total,
+
+                status: "Pendente"
+
+            };
+
+
+            let historicoPedidos =
+                JSON.parse(
+                    localStorage.getItem("javaCafeHistoricoPedidos")
+                ) || [];
+
+
+            historicoPedidos.push(novoPedidoAdmin);
+
+
+            localStorage.setItem(
+                "javaCafeHistoricoPedidos",
+                JSON.stringify(historicoPedidos)
+            );
+
+
+            // ======================================
+            // PREENCHIMENTO DO MODAL
+            // ======================================
+
             document.getElementById(
                 "numeroPedido"
             ).textContent =
@@ -1011,6 +1239,19 @@
                 formatarPreco(
                     total
                 );
+
+
+            let textoConsumo = "Local: " + opcaoConsumo;
+
+            if (numeroMesa) {
+
+                textoConsumo += " - Mesa: " + numeroMesa;
+
+            }
+
+
+            document.getElementById("infoConsumoModal").textContent =
+                textoConsumo;
 
 
             const modal =

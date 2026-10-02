@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-BR" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Java Café - Painel Administrativo">
+    <title>Java Café - Área do Administrador</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/admin.css">
+
+</head>
+
+<body class="h-100">
+
+    <!-- MENU DO ADMIN -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <i class="fas fa-mug-hot me-2"></i>Java Café <span class="badge bg-danger ms-2 fs-6">ADMIN</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cardapio.html">Cardápio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pedidos.html">Pedidos Clientes</a></li>
+                        <li class="nav-item">
+                            <button id="btnLoginLogout" class="btn btn-outline-light btn-sm ms-lg-3" onclick="handleAuth()">
+                                <i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+
+        <!-- TELA DE LOGIN -->
+        <section id="secLogin" class="row justify-content-center my-5">
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
+                    <div class="mb-3 text-warning">
+                        <i class="fas fa-lock fa-3x"></i>
+                    </div>
+                    <h3 class="fw-bold mb-2">Acesso Restrito</h3>
+                    <p class="text-muted small mb-4">Insira suas credenciais de administrador da Java Café.</p>
+                    <form onsubmit="realizarLogin(event)">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="loginUser" placeholder="Usuário" required value="admin">
+                            <label for="loginUser">Usuário</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="loginPass" placeholder="Senha" required value="java123">
+                            <label for="loginPass">Senha</label>
+                        </div>
+                        <button type="submit" class="btn btn-cafe w-100 py-2 fw-bold">
+                            <i class="fas fa-sign-in-alt me-2"></i> Acessar Painel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD ADMIN -->
+        <div id="secDashboard" class="d-none">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold m-0"><i class="fas fa-user-shield me-2 text-danger"></i>Painel do Administrador</h2>
+                    <p class="text-muted m-0">Gerencie os pedidos recebidos da página de pedidos em tempo real.</p>
+                </div>
+                <div>
+                    <button class="btn btn-outline-danger btn-sm me-2" onclick="limparTudoAdmin()">
+                        <i class="fas fa-trash me-1"></i> Limpar Histórico
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="logoutAdmin()">
+                        <i class="fas fa-power-off me-1"></i> Sair do Admin
+                    </button>
+                </div>
+            </div>
+
+            <!-- CARDS DE MÉTRICAS -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card-stat p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Total de Pedidos</small>
+                                <h4 class="fw-bold m-0" id="statTotalPedidos">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-stat p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Faturamento Total</small>
+                                <h4 class="fw-bold m-0" id="statFaturamento">R$ 0,00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-stat p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Em Preparo</small>
+                                <h4 class="fw-bold m-0" id="statEmPreparo">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABELA DE PEDIDOS -->
+            <div class="card border-0 shadow-sm rounded-3 mb-5">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="m-0 fw-bold"><i class="fas fa-list-check me-2 text-primary"></i>Pedidos Recebidos</h5>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="carregarPedidos()"><i class="fas fa-sync me-1"></i> Atualizar</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#ID</th>
+                                <th>Data / Hora</th>
+                                <th>Local / Mesa</th>
+                                <th>Itens do Pedido</th>
+                                <th>Total</th>
+                                <th>Status Atual</th>
+                                <th>Ações de Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaPedidos">
+                            <!-- Gerado Dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER SIMPLIFICADO -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">
+                &copy; 2026 Java Café. Todos os direitos reservados. ☕
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // CHAVES DO LOCALSTORAGE PARA COMPATIBILIDADE TOTAL
+        const CHAVE_HISTORICO = 'javaCafeHistoricoPedidos';
+        const CHAVE_STORAGE_SEC = 'pedidos_javacafe';
+        const CHAVE_STORAGE_TER = 'javaCafe_pedidos';
+
+        let isAdminLoggedIn = localStorage.getItem('javaCafe_isAdmin') === 'true';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            atualizarInterface();
+            
+            // Ouve alterações de outras abas em tempo real
+            window.addEventListener('storage', carregarPedidos);
+
+            // Atualização periódica a cada 4 segundos
+            setInterval(() => {
+                if (isAdminLoggedIn) carregarPedidos();
+            }, 4000);
+        });
+
+        function realizarLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('loginUser').value;
+            const pass = document.getElementById('loginPass').value;
+
+            if (user === 'admin' && pass === 'java123') {
+                localStorage.setItem('javaCafe_isAdmin', 'true');
+                isAdminLoggedIn = true;
+                atualizarInterface();
+            } else {
+                alert('Usuário ou senha incorretos! (Padrão: admin / java123)');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.setItem('javaCafe_isAdmin', 'false');
+            isAdminLoggedIn = false;
+            atualizarInterface();
+        }
+
+        function handleAuth() {
+            if (isAdminLoggedIn) logoutAdmin();
+            else {
+                document.getElementById('secLogin').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function atualizarInterface() {
+            const secLogin = document.getElementById('secLogin');
+            const secDashboard = document.getElementById('secDashboard');
+            const btnAuth = document.getElementById('btnLoginLogout');
+
+            if (isAdminLoggedIn) {
+                secLogin.classList.add('d-none');
+                secDashboard.classList.remove('d-none');
+                btnAuth.innerHTML = '<i class="fas fa-sign-out-alt me-1"></i> Sair';
+                carregarPedidos();
+            } else {
+                secLogin.classList.remove('d-none');
+                secDashboard.classList.add('d-none');
+                btnAuth.innerHTML = '<i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin';
+            }
+        }
+
+        function obterTodosPedidos() {
+            const d1 = localStorage.getItem(CHAVE_HISTORICO);
+            const d2 = localStorage.getItem(CHAVE_STORAGE_SEC);
+            const d3 = localStorage.getItem(CHAVE_STORAGE_TER);
+
+            let lista = [];
+            if (d1) lista = lista.concat(JSON.parse(d1));
+            if (d2) lista = lista.concat(JSON.parse(d2));
+            if (d3) lista = lista.concat(JSON.parse(d3));
+
+            // Remove duplicados pelo ID do pedido
+            const mapaUnico = new Map();
+            lista.forEach(p => {
+                const id = p.id || p.numero;
+                if (id && !mapaUnico.has(String(id))) {
+                    mapaUnico.set(String(id), p);
+                }
+            });
+
+            return Array.from(mapaUnico.values());
+        }
+
+        function salvarPedidosGlobais(pedidos) {
+            const jsonStr = JSON.stringify(pedidos);
+            localStorage.setItem(CHAVE_HISTORICO, jsonStr);
+            localStorage.setItem(CHAVE_STORAGE_SEC, jsonStr);
+            localStorage.setItem(CHAVE_STORAGE_TER, jsonStr);
+        }
+
+        function carregarPedidos() {
+            const pedidos = obterTodosPedidos();
+            const tbody = document.getElementById('tabelaPedidos');
+            tbody.innerHTML = '';
+
+            let totalFaturamento = 0;
+            let countPreparo = 0;
+
+            if (!pedidos || pedidos.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Nenhum pedido registrado no sistema ainda.</td></tr>`;
+            } else {
+                // Exibe os pedidos mais recentes primeiro
+                [...pedidos].reverse().forEach(p => {
+                    const id = p.id || p.numero || 'N/A';
+                    
+                    // Tratamento da Data e Hora do Pedido
+                    let dataHoraFormatada = p.dataHora || p.data || p.hora;
+                    if (!dataHoraFormatada) {
+                        const agora = new Date();
+                        dataHoraFormatada = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                    }
+
+                    // Identificação do local/mesa
+                    let clienteOuMesa = p.tipoConsumo || p.cliente || p.nomeCliente || 'Balcão';
+                    if (p.mesa && p.mesa !== 'N/A') {
+                        clienteOuMesa += ` (Mesa ${p.mesa})`;
+                    }
+
+                    const status = p.status || 'Pendente';
+
+                    // Cálculo do Total
+                    let totalVal = 0;
+                    if (typeof p.total === 'number') {
+                        totalVal = p.total;
+                    } else if (typeof p.total === 'string') {
+                        totalVal = parseFloat(p.total.replace('R$', '').replace(',', '.').trim()) || 0;
+                    }
+
+                    totalFaturamento += totalVal;
+
+                    if (status.toLowerCase().includes('preparo')) {
+                        countPreparo++;
+                    }
+
+                    // Formatação da Lista de Itens
+                    let stringItens = '';
+                    if (Array.isArray(p.itens)) {
+                        stringItens = p.itens.map(item => {
+                            if (typeof item === 'string') return item;
+                            const qtd = item.quantidade || item.qtd || 1;
+                            const nome = item.nome || item.titulo || 'Item';
+                            return `${qtd}x ${nome}`;
+                        }).join(', ');
+                    } else if (typeof p.itens === 'string') {
+                        stringItens = p.itens;
+                    } else {
+                        stringItens = 'Itens variados';
+                    }
+
+                    // Classe e estilo da Badge
+                    let statusClass = 'pendente';
+                    if (status.toLowerCase().includes('preparo')) statusClass = 'preparo';
+                    else if (status.toLowerCase().includes('pronto')) statusClass = 'pronto';
+                    else if (status.toLowerCase().includes('concluído') || status.toLowerCase().includes('finalizado')) statusClass = 'finalizado';
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="fw-bold">#${id}</td>
+                        <td><small class="text-muted"><i class="far fa-clock me-1"></i>${dataHoraFormatada}</small></td>
+                        <td><strong>${clienteOuMesa}</strong></td>
+                        <td><small class="text-secondary">${stringItens}</small></td>
+                        <td class="fw-bold text-success">R$ ${totalVal.toFixed(2).replace('.', ',')}</td>
+                        <td><span class="badge badge-${statusClass}">${status}</span></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" onchange="alterarStatus('${id}', this.value)">
+                                    <option value="Pendente" ${status === 'Pendente' ? 'selected' : ''}>Pendente</option>
+                                    <option value="Em Preparo" ${status === 'Em Preparo' ? 'selected' : ''}>Em Preparo</option>
+                                    <option value="Pronto" ${status === 'Pronto' ? 'selected' : ''}>Pronto</option>
+                                    <option value="Concluído" ${status === 'Concluído' ? 'selected' : ''}>Concluído</option>
+                                </select>
+                                <button class="btn btn-sm btn-outline-danger" onclick="excluirPedido('${id}')" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Atualização dos Cards de Métricas
+            document.getElementById('statTotalPedidos').innerText = pedidos.length;
+            document.getElementById('statFaturamento').innerText = `R$ ${totalFaturamento.toFixed(2).replace('.', ',')}`;
+            document.getElementById('statEmPreparo').innerText = countPreparo;
+        }
+
+        function alterarStatus(id, novoStatus) {
+            let pedidos = obterTodosPedidos();
+
+            pedidos = pedidos.map(p => {
+                const pId = p.id || p.numero;
+                if (String(pId) === String(id)) {
+                    p.status = novoStatus;
+                }
+                return p;
+            });
+
+            salvarPedidosGlobais(pedidos);
+            carregarPedidos();
+        }
+
+        function excluirPedido(id) {
+            if (confirm(`Deseja remover o pedido #${id}?`)) {
+                let pedidos = obterTodosPedidos();
+                pedidos = pedidos.filter(p => String(p.id || p.numero) !== String(id));
+                salvarPedidosGlobais(pedidos);
+                carregarPedidos();
+            }
+        }
+
+        function limparTudoAdmin() {
+            if (confirm("Tem certeza de que deseja apagar TODOS os pedidos salvos?")) {
+                localStorage.removeItem(CHAVE_HISTORICO);
+                localStorage.removeItem(CHAVE_STORAGE_SEC);
+                localStorage.removeItem(CHAVE_STORAGE_TER);
+                carregarPedidos();
+            }
+        }
+    </script>
+</body>
+</html>

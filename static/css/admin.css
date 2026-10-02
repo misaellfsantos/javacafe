@@ -1,0 +1,70 @@
+:root {
+            --cafe-dark: #2c1a12;
+            --cafe-primary: #6f4e37;
+            --cafe-light: #f5ebe0;
+            --cafe-accent: #d4a373;
+        }
+
+        body {
+            background-color: #faf7f2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: var(--cafe-dark) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--cafe-accent) !important;
+        }
+
+        .btn-cafe {
+            background-color: var(--cafe-primary);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-cafe:hover {
+            background-color: #583c28;
+            color: #fff;
+        }
+
+        .card-stat {
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card-stat:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .badge-pendente { background-color: #ffc107; color: #000; }
+        .badge-preparo { background-color: #0dcaf0; color: #000; }
+        .badge-pronto { background-color: #198754; color: #fff; }
+        .badge-finalizado { background-color: #6c757d; color: #fff; }
+
+        footer {
+            background-color: var(--cafe-dark);
+            color: #d4a373;
+            padding: 20px 0;
+            margin-top: auto;
+        }

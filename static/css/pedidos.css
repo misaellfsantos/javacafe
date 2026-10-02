@@ -32,33 +32,31 @@ body {
    NAVBAR
 ========================================== */
 
-.navbar-java {
+.navbar {
     background: var(--marrom-escuro);
-    padding: 15px 0;
+    padding: 14px 0;
 }
 
 .navbar-brand {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: var(--branco) !important;
+    color: #fff !important;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .navbar-brand i {
     color: var(--dourado);
-    margin-right: 7px;
+    margin-right: 8px;
 }
 
-.navbar-java .nav-link {
-    color: #f7eee5 !important;
-    margin-left: 12px;
-    transition: 0.3s;
+.nav-link {
+    color: #fff !important;
+    margin-left: 10px;
 }
 
-.navbar-java .nav-link:hover,
-.navbar-java .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--dourado) !important;
 }
-
 
 /* ==========================================
    CABEÇALHO
@@ -70,7 +68,7 @@ body {
             rgba(43, 27, 20, 0.88),
             rgba(43, 27, 20, 0.88)
         ),
-        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80");
+        url("../img/cafe.png");
 
     background-size: cover;
     background-position: center;
