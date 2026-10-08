@@ -1,4 +1,11 @@
-package senai.com.br.javacafeteria.cotroller;
+package senai.com.br.javacafeteria.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 public class AdminController {
+    @GetMapping("/admin")
+    public String admin()
+    {
+        return "admin/admin";
+    }
 }

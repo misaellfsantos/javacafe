@@ -18,9 +18,9 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="../static/css/pedidos.css">
+    <link rel="stylesheet" th:href="@{/css/pedidos.css}">
 
-    <link rel="icon" href="../static/img/logo_cafe.png" type="image/x-icon">
+    <link rel="icon" href="../../static/img/logo_cafe.png" type="image/x-icon">
 
 </head>
 
@@ -33,7 +33,7 @@
 
         <div class="container">
 
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" th:href="@{/index}">
 
                 <i class="bi bi-cup-hot-fill"></i>
 
@@ -63,7 +63,7 @@
 
                         <a
                             class="nav-link"
-                            href="../index.html">
+                            th:href="@{/index}">
 
                             <i class="bi bi-house"></i>
 
@@ -78,7 +78,7 @@
 
                         <a
                             class="nav-link"
-                            href="cardapio.html">
+                            th:href="@{/cardapio}">
 
                             <i class="bi bi-journal-text"></i>
 
@@ -296,7 +296,7 @@
                         </p>
 
                         <a
-                            href="cardapio.html"
+                            href="../cardapio/cardapio.html"
                             class="btn-java">
 
                             <i class="bi bi-journal-text"></i>
@@ -390,7 +390,7 @@
 
 
                     <a
-                        href="cardapio.html"
+                        href="../cardapio/cardapio.html"
                         class="btn-continuar">
 
                         <i class="bi bi-arrow-left"></i>
