@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" th:href="@{/}">>
                     <i class="fas fa-mug-hot me-2"></i>Java Café <span class="badge bg-danger ms-2 fs-6">ADMIN</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -28,9 +28,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../cardapio/cardapio.html">Cardápio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../pedidos/pedidos.html">Pedidos Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/}">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/cardapio}">Cardápio</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/pedidos}">Pedidos Clientes</a></li>
                         <li class="nav-item">
                             <button id="btnLoginLogout" class="btn btn-outline-light btn-sm ms-lg-3" onclick="handleAuth()">
                                 <i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin
