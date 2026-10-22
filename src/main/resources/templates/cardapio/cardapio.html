@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,7 +11,7 @@
 
     <meta name="keywords" content="Java Cafe, cafeteria, café, cardápio, bebidas, doces, salgados">
 
-    <link rel="icon" href="../../static/img/logo_cafe.png" type="image/x-icon">
+    <link rel="icon" th:href="@{/img/logo_cafe.png}" type="image/png">
     <title>Java Cafe - Cardápio</title>
 
     <!-- Bootstrap -->
@@ -24,225 +24,225 @@
 
 </head>
 
-<body>
+<body th:attr="data-pedidos-url=@{/pedidos}">
 
 
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+<!-- =========================
+     NAVBAR
+========================== -->
 
-    <nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg">
 
-        <div class="container">
+    <div class="container">
 
-            <a class="navbar-brand"  th:href="@{/}">
+        <a class="navbar-brand"  th:href="@{/}">
 
-                <i class="bi bi-cup-hot-fill"></i>
+            <i class="bi bi-cup-hot-fill"></i>
 
-                Java Café
+            Java Café
 
-            </a>
+        </a>
 
 
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
-                data-bs-target="#menuNavbar">
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-expanded="false" aria-label="Abrir menu">
 
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
 
-            </button>
+        </button>
 
 
-            <div class="collapse navbar-collapse" id="menuNavbar">
+        <div class="collapse navbar-collapse" id="menuNavbar">
 
-                <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link" th:href="@{/}">
+                    <a class="nav-link" th:href="@{/}">
 
-                            Início
+                        Início
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
 
-                    <li class="nav-item">
+                <li class="nav-item">
 
-                        <a class="nav-link active" th:href="@{/pedidos}" >
+                    <a class="nav-link active" th:href="@{/pedidos}" >
 
-                            Pedidos
+                        Pedidos
 
-                        </a>
+                    </a>
 
-                    </li>
+                </li>
 
-                </ul>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-
-    <!-- =========================
-         CABEÇALHO
-    ========================== -->
-
-    <header class="menu-header">
-
-        <div class="menu-header-content">
-
-            <h1>
-
-                <i class="bi bi-cup-hot-fill"></i>
-
-                Nosso Cardápio
-
-            </h1>
-
-
-            <p>
-
-                Sabores preparados para tornar seu momento no
-
-                <strong>Java Cafe</strong>
-
-                ainda mais especial.
-
-                Escolha seu café, acompanhe com um doce
-
-                e aproveite nosso ambiente acolhedor.
-
-            </p>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =========================
-         CATEGORIAS
-    ========================== -->
-
-    <div class="category-menu">
-
-        <div class="container">
-
-            <div class="nav">
-
-                <a href="#cafes">
-
-                    <i class="bi bi-cup-hot"></i>
-
-                    Cafés
-
-                </a>
-
-
-                <a href="#bebidas">
-
-                    <i class="bi bi-cup-straw"></i>
-
-                    Bebidas
-
-                </a>
-
-
-                <a href="#doces">
-
-                    <i class="bi bi-cookie"></i>
-
-                    Doces
-
-                </a>
-
-
-                <a href="#salgados">
-
-                    <i class="bi bi-egg-fried"></i>
-
-                    Salgados
-
-                </a>
-
-            </div>
+            </ul>
 
         </div>
 
     </div>
 
+</nav>
 
 
-    <!-- =========================
-         CAFÉS
-    ========================== -->
 
-    <section class="section" id="cafes">
+<!-- =========================
+     CABEÇALHO
+========================== -->
 
-        <div class="container">
+<header class="menu-header">
 
-            <h2 class="section-title">
+    <div class="menu-header-content">
 
-                Nossos Cafés
+        <h1>
 
-            </h2>
+            <i class="bi bi-cup-hot-fill"></i>
 
+            Nosso Cardápio
 
-            <p class="section-subtitle">
-
-                Grãos selecionados e preparados de diferentes formas
-
-                para você aproveitar todo o sabor e aroma do café.
-
-            </p>
+        </h1>
 
 
-            <div class="row g-4">
+        <p>
+
+            Sabores preparados para tornar seu momento no
+
+            <strong>Java Cafe</strong>
+
+            ainda mais especial.
+
+            Escolha seu café, acompanhe com um doce
+
+            e aproveite nosso ambiente acolhedor.
+
+        </p>
+
+    </div>
+
+</header>
 
 
-                <!-- CAFÉ ESPRESSO -->
 
-                <div class="col-lg-4 col-md-6">
+<!-- =========================
+     CATEGORIAS
+========================== -->
 
-                    <div class="menu-card">
+<div class="category-menu">
 
-                        <div class="menu-card-image">
+    <div class="container">
 
-                            <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=900&q=85"
-                                alt="Café Espresso">
+        <div class="nav">
 
-                            <span class="category-badge">
+            <a href="#cafes">
+
+                <i class="bi bi-cup-hot"></i>
+
+                Cafés
+
+            </a>
+
+
+            <a href="#bebidas">
+
+                <i class="bi bi-cup-straw"></i>
+
+                Bebidas
+
+            </a>
+
+
+            <a href="#doces">
+
+                <i class="bi bi-cookie"></i>
+
+                Doces
+
+            </a>
+
+
+            <a href="#salgados">
+
+                <i class="bi bi-egg-fried"></i>
+
+                Salgados
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     CAFÉS
+========================== -->
+
+<section class="section" id="cafes">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            Nossos Cafés
+
+        </h2>
+
+
+        <p class="section-subtitle">
+
+            Grãos selecionados e preparados de diferentes formas
+
+            para você aproveitar todo o sabor e aroma do café.
+
+        </p>
+
+
+        <div class="row g-4">
+
+
+            <!-- CAFÉ ESPRESSO -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="menu-card">
+
+                    <div class="menu-card-image">
+
+                        <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=900&q=85"
+                             alt="Café Espresso">
+
+                        <span class="category-badge">
 
                                 Clássico
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Café Espresso
+                            Café Espresso
 
-                            </h4>
-
-
-                            <p>
-
-                                Café intenso, aromático e encorpado,
-                                preparado na máquina para preservar
-                                todo o sabor dos grãos.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Café intenso, aromático e encorpado,
+                            preparado na máquina para preservar
+                            todo o sabor dos grãos.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -251,13 +251,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Café Espresso', 6)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Café Espresso', 6)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -265,46 +263,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- CAPPUCCINO -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- CAPPUCCINO -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=85"
-                                alt="Cappuccino">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=85"
+                             alt="Cappuccino">
+
+                        <span class="category-badge">
 
                                 Especial
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Cappuccino
+                            Cappuccino
 
-                            </h4>
-
-
-                            <p>
-
-                                Espresso combinado com leite cremoso
-                                e uma delicada camada de espuma.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Espresso combinado com leite cremoso
+                            e uma delicada camada de espuma.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -313,13 +313,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Cappuccino', 8)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Cappuccino', 8)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -327,46 +325,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- LATTE -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- LATTE -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=900&q=85"
-                                alt="Café Latte">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=900&q=85"
+                             alt="Café Latte">
+
+                        <span class="category-badge">
 
                                 Cremoso
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Café Latte
+                            Café Latte
 
-                            </h4>
-
-
-                            <p>
-
-                                Espresso suave com leite vaporizado,
-                                finalizado com uma espuma delicada.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Espresso suave com leite vaporizado,
+                            finalizado com uma espuma delicada.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -375,13 +375,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Café Latte', 10)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Café Latte', 10)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -389,47 +387,49 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- MOCHA -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- MOCHA -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=900&q=85"
-                                alt="Café Mocha">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=900&q=85"
+                             alt="Café Mocha">
+
+                        <span class="category-badge">
 
                                 Chocolate
 
                             </span>
 
-                        </div>
+                    </div>
 
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Mocha
+                            Mocha
 
-                            </h4>
-
-
-                            <p>
-
-                                Uma combinação equilibrada de espresso,
-                                leite cremoso e chocolate.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Uma combinação equilibrada de espresso,
+                            leite cremoso e chocolate.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -438,13 +438,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Mocha', 9)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Mocha', 9)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -452,179 +450,172 @@
 
                 </div>
 
+            </div>
 
-    </section>
+        </div> <!-- Fecha row g-4 -->
+    </div> <!-- Fecha container -->
+</section>
 
-    <section class="section" id="bebidas-frias">
-        <div class="container">
-            <h2 class="section-title">Bebidas Frias</h2>
+<section class="section" id="bebidas-frias">
+    <div class="container">
+        <h2 class="section-title">Bebidas Frias</h2>
+        <p class="section-subtitle">
+            Combinações refrescantes e cheias de sabor, preparadas na medida certa para renovar as suas energias a
+            qualquer hora do dia.
+        </p>
 
-            
-            <p class="section-subtitle">
-                Combinações refrescantes e cheias de sabor, preparadas na medida certa para renovar as suas energias a
-                qualquer hora do dia.
-            </p>
-            
-
-            <div class="row g-4">
-                <!-- ICED CARAMEL MACCHIATO -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="menu-card">
-                        <div class="menu-card-image">
-                            <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=85"
-                                alt="Iced Caramel Macchiato">
-                            <span class="category-badge">Gelado</span>
-                        </div>
-                        <div class="menu-card-body">
-                            <h4>Iced Caramel Macchiato</h4>
-                            <p>Espresso gelado combinado com leite cremoso, baunilha e finalizado com calda de caramelo.
-                            </p>
-                            <div class="card-footer-menu">
-                                <span class="price">R$ 14,00</span>
-                                <button class="btn-pedido"
-                                    onclick="irParaPedidos('Iced Caramel Macchiato', 14)">Adicionar</button>
-                            </div>
+        <div class="row g-4">
+            <!-- ICED CARAMEL MACCHIATO -->
+            <div class="col-lg-4 col-md-6">
+                <div class="menu-card">
+                    <div class="menu-card-image">
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=85" alt="Iced Caramel Macchiato">
+                        <span class="category-badge">Gelado</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h4>Iced Caramel Macchiato</h4>
+                        <p>Espresso gelado combinado com leite cremoso, baunilha e finalizado com calda de caramelo.</p>
+                        <div class="card-footer-menu">
+                            <span class="price">R$ 14,00</span>
+                            <button class="btn-pedido" onclick="irParaPedidos('Iced Caramel Macchiato', 14)">Adicionar</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- FRAPPUCCINO DE DOCE DE LEITE -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="menu-card">
-                        <div class="menu-card-image">
-                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=85"
-                                alt="Frappuccino de Doce de Leite">
-                            <span class="category-badge">Especial</span>
-                        </div>
-                        <div class="menu-card-body">
-                            <h4>Frappuccino de Doce de Leite</h4>
-                            <p>Bebida batida com café, leite, doce de leite artesanal e cobertura de chantilly.</p>
-                            <div class="card-footer-menu">
-                                <span class="price">R$ 16,00</span>
-                                <button class="btn-pedido"
-                                    onclick="irParaPedidos('Frappuccino Doce de Leite', 16)">Adicionar</button>
-                            </div>
+            <!-- FRAPPUCCINO DE DOCE DE LEITE -->
+            <div class="col-lg-4 col-md-6">
+                <div class="menu-card">
+                    <div class="menu-card-image">
+                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=85" alt="Frappuccino de Doce de Leite">
+                        <span class="category-badge">Especial</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h4>Frappuccino de Doce de Leite</h4>
+                        <p>Bebida batida com café, leite, doce de leite artesanal e cobertura de chantilly.</p>
+                        <div class="card-footer-menu">
+                            <span class="price">R$ 16,00</span>
+                            <button class="btn-pedido" onclick="irParaPedidos('Frappuccino Doce de Leite', 16)">Adicionar</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- ESPRESSO TÔNICA -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="menu-card">
-                        <div class="menu-card-image">
-                            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=900&q=85"
-                                alt="Espresso Tônica">
-                            <span class="category-badge">Refrescante</span>
-                        </div>
-                        <div class="menu-card-body">
-                            <h4>Espresso Tônica</h4>
-                            <p>Combinação refrescante de água tônica, gelo e espresso com toque cítrico de laranja.</p>
-                            <div class="card-footer-menu">
-                                <span class="price">R$ 12,00</span>
-                                <button class="btn-pedido"
-                                    onclick="irParaPedidos('Espresso Tônica', 12)">Adicionar</button>
-                            </div>
+            <!-- ESPRESSO TÔNICA -->
+            <div class="col-lg-4 col-md-6">
+                <div class="menu-card">
+                    <div class="menu-card-image">
+                        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=900&q=85" alt="Espresso Tônica">
+                        <span class="category-badge">Refrescante</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h4>Espresso Tônica</h4>
+                        <p>Combinação refrescante de água tônica, gelo e espresso com toque cítrico de laranja.</p>
+                        <div class="card-footer-menu">
+                            <span class="price">R$ 12,00</span>
+                            <button class="btn-pedido" onclick="irParaPedidos('Espresso Tônica', 12)">Adicionar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- =========================
-         DESTAQUE
-    ========================== -->
+<!-- =========================
+     DESTAQUE
+========================== -->
 
-    <section class="highlight">
+<section class="highlight">
 
-        <div class="container">
+    <div class="container">
 
-            <h2>
+        <h2>
 
-                ☕ Mais que café, uma experiência.
+            ☕ Mais que café, uma experiência.
 
-            </h2>
-
-
-            <p>
-
-                No Java Cafe, cada bebida é preparada para combinar
-                com o momento. Seja para trabalhar, conversar com
-                amigos ou simplesmente relaxar, temos um café esperando
-                por você.
-
-            </p>
-
-        </div>
-
-    </section>
+        </h2>
 
 
+        <p>
 
-    <!-- =========================
-         BEBIDAS
-    ========================== -->
+            No Java Cafe, cada bebida é preparada para combinar
+            com o momento. Seja para trabalhar, conversar com
+            amigos ou simplesmente relaxar, temos um café esperando
+            por você.
 
-    <section class="section" id="bebidas">
+        </p>
 
-        <div class="container">
+    </div>
 
-            <h2 class="section-title">
-
-                Bebidas
-
-            </h2>
+</section>
 
 
-            <p class="section-subtitle">
 
-                Opções refrescantes e saborosas para acompanhar
-                seu momento no Java Cafe.
+<!-- =========================
+     BEBIDAS
+========================== -->
 
-            </p>
+<section class="section" id="bebidas">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            Bebidas
+
+        </h2>
 
 
-            <div class="row g-4">
+        <p class="section-subtitle">
+
+            Opções refrescantes e saborosas para acompanhar
+            seu momento no Java Cafe.
+
+        </p>
 
 
-                <!-- SUCO -->
+        <div class="row g-4">
 
-                <div class="col-lg-4 col-md-6">
 
-                    <div class="menu-card">
+            <!-- SUCO -->
 
-                        <div class="menu-card-image">
+            <div class="col-lg-4 col-md-6">
 
-                            <img src="../../static/img/suco.jpg"
-                                alt="Suco Natural">
+                <div class="menu-card">
 
-                            <span class="category-badge">
+                    <div class="menu-card-image">
+
+                        <img th:src="@{/img/suco.jpg}"
+                             alt="Suco Natural">
+
+                        <span class="category-badge">
 
                                 Natural
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Suco Natural
+                            Suco Natural
 
-                            </h4>
-
-
-                            <p>
-
-                                Suco preparado na hora com frutas
-                                selecionadas.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Suco preparado na hora com frutas
+                            selecionadas.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -633,13 +624,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Suco Natural', 7)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Suco Natural', 7)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -647,46 +636,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- REFRIGERANTE -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- REFRIGERANTE -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85"
-                                alt="Refrigerante">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85"
+                             alt="Refrigerante">
+
+                        <span class="category-badge">
 
                                 Gelado
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Refrigerante
+                            Refrigerante
 
-                            </h4>
-
-
-                            <p>
-
-                                Bebida gelada para acompanhar
-                                seu café ou lanche.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Bebida gelada para acompanhar
+                            seu café ou lanche.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -695,13 +686,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Refrigerante', 6)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Refrigerante', 6)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -709,45 +698,47 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- ÁGUA -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- ÁGUA -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=900&q=85"
-                                alt="Água Mineral">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=900&q=85"
+                             alt="Água Mineral">
+
+                        <span class="category-badge">
 
                                 Refrescante
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Água Mineral
+                            Água Mineral
 
-                            </h4>
-
-
-                            <p>
-
-                                Água mineral servida gelada.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Água mineral servida gelada.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -756,13 +747,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Água Mineral', 4)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Água Mineral', 4)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -774,74 +763,76 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- =========================
-         DOCES
-    ========================== -->
+<!-- =========================
+     DOCES
+========================== -->
 
-    <section class="section" id="doces">
+<section class="section" id="doces">
 
-        <div class="container">
+    <div class="container">
 
-            <h2 class="section-title">
+        <h2 class="section-title">
 
-                Doces
+            Doces
 
-            </h2>
-
-
-            <p class="section-subtitle">
-
-                Doces preparados para combinar perfeitamente
-                com uma boa xícara de café.
-
-            </p>
+        </h2>
 
 
-            <div class="row g-4">
+        <p class="section-subtitle">
+
+            Doces preparados para combinar perfeitamente
+            com uma boa xícara de café.
+
+        </p>
 
 
-                <!-- BOLO -->
+        <div class="row g-4">
 
-                <div class="col-lg-4 col-md-6">
 
-                    <div class="menu-card">
+            <!-- BOLO -->
 
-                        <div class="menu-card-image">
+            <div class="col-lg-4 col-md-6">
 
-                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
-                                alt="Bolo de Chocolate">
+                <div class="menu-card">
 
-                            <span class="category-badge">
+                    <div class="menu-card-image">
+
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                             alt="Bolo de Chocolate">
+
+                        <span class="category-badge">
 
                                 Favorito
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Bolo de Chocolate
+                            Bolo de Chocolate
 
-                            </h4>
-
-
-                            <p>
-
-                                Bolo macio de chocolate com cobertura
-                                cremosa.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Bolo macio de chocolate com cobertura
+                            cremosa.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -850,13 +841,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Bolo de Chocolate', 10)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Bolo de Chocolate', 10)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -864,46 +853,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- DONUT -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- DONUT -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="../../static/img/donuts.jpg"
-                                alt="Donut">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img th:src="@{/img/donuts.jpg}"
+                             alt="Donut">
+
+                        <span class="category-badge">
 
                                 Doce
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Donut Artesanal
+                            Donut Artesanal
 
-                            </h4>
-
-
-                            <p>
-
-                                Donut macio com cobertura e
-                                finalização especial.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Donut macio com cobertura e
+                            finalização especial.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -912,13 +903,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Donut Artesanal', 8)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Donut Artesanal', 8)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -926,46 +915,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- CHEESECAKE -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- CHEESECAKE -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
-                                alt="Cheesecake">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
+                             alt="Cheesecake">
+
+                        <span class="category-badge">
 
                                 Especial
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Cheesecake
+                            Cheesecake
 
-                            </h4>
-
-
-                            <p>
-
-                                Cheesecake cremoso servido com
-                                cobertura de frutas vermelhas.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Cheesecake cremoso servido com
+                            cobertura de frutas vermelhas.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -974,13 +965,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Cheesecake', 12)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Cheesecake', 12)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -992,74 +981,76 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- =========================
-         SALGADOS
-    ========================== -->
+<!-- =========================
+     SALGADOS
+========================== -->
 
-    <section class="section" id="salgados">
+<section class="section" id="salgados">
 
-        <div class="container">
+    <div class="container">
 
-            <h2 class="section-title">
+        <h2 class="section-title">
 
-                Salgados
+            Salgados
 
-            </h2>
-
-
-            <p class="section-subtitle">
-
-                Lanches preparados para acompanhar seu café
-                durante qualquer hora do dia.
-
-            </p>
+        </h2>
 
 
-            <div class="row g-4">
+        <p class="section-subtitle">
+
+            Lanches preparados para acompanhar seu café
+            durante qualquer hora do dia.
+
+        </p>
 
 
-                <!-- COXINHA -->
+        <div class="row g-4">
 
-                <div class="col-lg-4 col-md-6">
 
-                    <div class="menu-card">
+            <!-- COXINHA -->
 
-                        <div class="menu-card-image">
+            <div class="col-lg-4 col-md-6">
 
-                            <img src="../../static/img/coxinha.jpg"
-                                alt="Coxinha">
+                <div class="menu-card">
 
-                            <span class="category-badge">
+                    <div class="menu-card-image">
+
+                        <img th:src="@{/img/coxinha.jpg}"
+                             alt="Coxinha">
+
+                        <span class="category-badge">
 
                                 Tradicional
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Coxinha Artesanal
+                            Coxinha Artesanal
 
-                            </h4>
-
-
-                            <p>
-
-                                Massa crocante recheada com frango
-                                temperado e cremoso.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Massa crocante recheada com frango
+                            temperado e cremoso.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -1068,13 +1059,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Coxinha Artesanal', 8)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Coxinha Artesanal', 8)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -1082,46 +1071,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- SANDUÍCHE -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- SANDUÍCHE -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=85"
-                                alt="Sanduíche">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=85"
+                             alt="Sanduíche">
+
+                        <span class="category-badge">
 
                                 Lanche
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Sanduíche da Casa
+                            Sanduíche da Casa
 
-                            </h4>
-
-
-                            <p>
-
-                                Pão artesanal, queijo, presunto,
-                                folhas frescas e molho especial.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Pão artesanal, queijo, presunto,
+                            folhas frescas e molho especial.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -1130,13 +1121,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Sanduíche da Casa', 18)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Sanduíche da Casa', 18)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -1144,46 +1133,48 @@
 
                 </div>
 
+            </div>
 
 
-                <!-- PÃO DE QUEIJO -->
 
-                <div class="col-lg-4 col-md-6">
+            <!-- PÃO DE QUEIJO -->
 
-                    <div class="menu-card">
+            <div class="col-lg-4 col-md-6">
 
-                        <div class="menu-card-image">
+                <div class="menu-card">
 
-                            <img src="../../static/img/pao%20de%20queijo.jpg"
-                                alt="Pão de Queijo">
+                    <div class="menu-card-image">
 
-                            <span class="category-badge">
+                        <img th:src="@{/img/pao-de-queijo.jpg}"
+                             alt="Pão de Queijo">
+
+                        <span class="category-badge">
 
                                 Mineiro
 
                             </span>
 
-                        </div>
+                    </div>
 
 
-                        <div class="menu-card-body">
+                    <div class="menu-card-body">
 
-                            <h4>
+                        <h4>
 
-                                Pão de Queijo
+                            Pão de Queijo
 
-                            </h4>
-
-
-                            <p>
-
-                                Pão de queijo quentinho, macio por dentro
-                                e levemente crocante por fora.
-
-                            </p>
+                        </h4>
 
 
-                            <div class="card-footer-menu">
+                        <p>
+
+                            Pão de queijo quentinho, macio por dentro
+                            e levemente crocante por fora.
+
+                        </p>
+
+
+                        <div class="card-footer-menu">
 
                                 <span class="price">
 
@@ -1192,13 +1183,11 @@
                                 </span>
 
 
-                                <button class="btn-pedido" onclick="irParaPedidos('Pão de Queijo', 7)">
+                            <button class="btn-pedido" onclick="irParaPedidos('Pão de Queijo', 7)">
 
-                                    Adicionar
+                                Adicionar
 
-                                </button>
-
-                            </div>
+                            </button>
 
                         </div>
 
@@ -1210,102 +1199,102 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- =========================
-         CONTATO
-    ========================== -->
+<!-- =========================
+     CONTATO
+========================== -->
 
-    <section class="contact" id="contato">
+<section class="contact" id="contato">
 
-        <div class="container">
+    <div class="container">
 
-            <h2 class="section-title mb-5">
+        <h2 class="section-title mb-5">
 
-                Java Cafe
+            Java Cafe
 
-            </h2>
-
-
-            <div class="row g-4">
+        </h2>
 
 
-                <div class="col-md-4">
-
-                    <div class="contact-box">
-
-                        <h5>
-
-                            <i class="bi bi-geo-alt-fill"></i>
-
-                            Localização
-
-                        </h5>
+        <div class="row g-4">
 
 
-                        <p>
+            <div class="col-md-4">
 
-                            Visite o Java Cafe e aproveite
-                            nosso ambiente acolhedor.
+                <div class="contact-box">
 
-                        </p>
+                    <h5>
 
-                    </div>
+                        <i class="bi bi-geo-alt-fill"></i>
 
-                </div>
+                        Localização
 
-
-
-                <div class="col-md-4">
-
-                    <div class="contact-box">
-
-                        <h5>
-
-                            <i class="bi bi-clock-fill"></i>
-
-                            Horário
-
-                        </h5>
+                    </h5>
 
 
-                        <p>
+                    <p>
 
-                            Segunda a sábado<br>
+                        Visite o Java Cafe e aproveite
+                        nosso ambiente acolhedor.
 
-                            08:00 às 20:00
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
+            </div>
 
 
-                <div class="col-md-4">
 
-                    <div class="contact-box">
+            <div class="col-md-4">
 
-                        <h5>
+                <div class="contact-box">
 
-                            <i class="bi bi-instagram"></i>
+                    <h5>
 
-                            Redes sociais
+                        <i class="bi bi-clock-fill"></i>
 
-                        </h5>
+                        Horário
+
+                    </h5>
 
 
-                        <p>
+                    <p>
 
-                            Acompanhe o Java Cafe
-                            nas redes sociais.
+                        Segunda a sábado<br>
 
-                        </p>
+                        08:00 às 20:00
 
-                    </div>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4">
+
+                <div class="contact-box">
+
+                    <h5>
+
+                        <i class="bi bi-instagram"></i>
+
+                        Redes sociais
+
+                    </h5>
+
+
+                    <p>
+
+                        Acompanhe o Java Cafe
+                        nas redes sociais.
+
+                    </p>
 
                 </div>
 
@@ -1313,57 +1302,54 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 
-    <!-- =========================
-         RODAPÉ
-    ========================== -->
+<!-- =========================
+     RODAPÉ
+========================== -->
 
-    <footer>
+<footer>
 
-        <div class="container">
+    <div class="container">
 
-            <p class="mb-0">
+        <p class="mb-0">
 
-                © 2026 Java Cafe -
-                Todos os direitos reservados.
+            © 2026 Java Cafe -
+            Todos os direitos reservados.
 
-            </p>
+        </p>
 
-        </div>
+    </div>
 
-    </footer>
-
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-
-    <script>
-
-        function irParaPedidos(produto, preco) {
-
-            const produtoCodificado =
-                encodeURIComponent(produto);
-
-            window.location.href =
-                "pedidos.html?produto=" +
-                produtoCodificado +
-                "&preco=" +
-                preco;
-
-        }
-
-    </script>
+</footer>
 
 
-    <!-- Bootstrap JS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+    function irParaPedidos(produto, preco) {
+        const urlBase = document.body.dataset.pedidosUrl || "/pedidos";
+        const parametros = new URLSearchParams({
+            produto: produto,
+            preco: String(preco)
+        });
+
+        window.location.href = urlBase + "?" + parametros.toString();
+    }
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 
 </body>

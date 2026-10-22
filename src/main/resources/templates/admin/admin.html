@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" class="h-100">
+<html lang="pt-BR" class="h-100" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -9,391 +9,1055 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" th:href="@{/css/admin.css}">
-
 </head>
 
 <body class="h-100">
 
-    <!-- MENU DO ADMIN -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-            <div class="container">
-                <a class="navbar-brand" th:href="@{/}">
-                    <i class="fas fa-mug-hot me-2"></i>Java Café <span class="badge bg-danger ms-2 fs-6">ADMIN</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/}">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/cardapio}">Cardápio</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/pedidos}">Pedidos Clientes</a></li>
-                        <li class="nav-item">
-                            <button id="btnLoginLogout" class="btn btn-outline-light btn-sm ms-lg-3" onclick="handleAuth()">
-                                <i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+<!-- MENU DO ADMIN -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <i class="fas fa-mug-hot me-2"></i>
+                Java Café
+                <span class="badge bg-danger ms-2 fs-6">ADMIN</span>
+            </a>
 
-    <main class="container py-4">
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- TELA DE LOGIN -->
-        <section id="secLogin" class="row justify-content-center my-5">
-            <div class="col-md-5">
-                <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
-                    <div class="mb-3 text-warning">
-                        <i class="fas fa-lock fa-3x"></i>
-                    </div>
-                    <h3 class="fw-bold mb-2">Acesso Restrito</h3>
-                    <p class="text-muted small mb-4">Insira suas credenciais de administrador da Java Café.</p>
-                    <form onsubmit="realizarLogin(event)">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="loginUser" placeholder="Usuário" required value="admin">
-                            <label for="loginUser">Usuário</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="loginPass" placeholder="Senha" required value="java123">
-                            <label for="loginPass">Senha</label>
-                        </div>
-                        <button type="submit" class="btn btn-cafe w-100 py-2 fw-bold">
-                            <i class="fas fa-sign-in-alt me-2"></i> Acessar Painel
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/cardapio}">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/pedidos}">Pedidos Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="btnLoginLogout"
+                                class="btn btn-outline-light btn-sm ms-lg-3"
+                                onclick="handleAuth()">
+                            <i class="fas fa-sign-in-alt me-1"></i>
+                            Entrar como Admin
                         </button>
-                    </form>
-                </div>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </nav>
+</header>
 
-        <!-- DASHBOARD ADMIN -->
-        <div id="secDashboard" class="d-none">
-            
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="fw-bold m-0"><i class="fas fa-user-shield me-2 text-danger"></i>Painel do Administrador</h2>
-                    <p class="text-muted m-0">Gerencie os pedidos recebidos da página de pedidos em tempo real.</p>
+<main class="container py-4">
+
+    <!-- LOGIN E CADASTRO -->
+    <section id="secLogin" class="row justify-content-center my-5">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+
+                <div class="text-center mb-3 text-warning">
+                    <i class="fas fa-lock fa-3x"></i>
                 </div>
-                <div>
-                    <button class="btn btn-outline-danger btn-sm me-2" onclick="limparTudoAdmin()">
-                        <i class="fas fa-trash me-1"></i> Limpar Histórico
+
+                <!-- PRIMEIRA CONTA -->
+                <div id="avisoPrimeiroAcesso"
+                     class="alert alert-info text-center d-none">
+                    <i class="fas fa-user-shield me-2"></i>
+                    <strong>Primeiro acesso!</strong>
+                    <p class="mb-0 mt-2">
+                        Não existem administradores cadastrados.
+                        Crie a primeira conta para acessar o painel.
+                    </p>
+                </div>
+
+                <h3 id="tituloLogin" class="fw-bold text-center mb-2">
+                    Acesso Restrito
+                </h3>
+
+                <p id="textoLogin" class="text-muted small text-center mb-4">
+                    Entre com sua conta de administrador do Java Café.
+                </p>
+
+                <!-- FORMULÁRIO DE LOGIN -->
+                <form id="formLogin" onsubmit="realizarLogin(event)">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                               id="loginUser" placeholder="Usuário"
+                               autocomplete="username" required>
+                        <label for="loginUser">Usuário</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control"
+                               id="loginPass" placeholder="Senha"
+                               autocomplete="current-password" required>
+                        <label for="loginPass">Senha</label>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-cafe w-100 py-2 fw-bold">
+                        <i class="fas fa-sign-in-alt me-2"></i>
+                        Entrar no Painel
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm" onclick="logoutAdmin()">
-                        <i class="fas fa-power-off me-1"></i> Sair do Admin
+
+                    <div class="text-center mt-3">
+                        <button type="button"
+                                class="btn btn-link btn-sm"
+                                onclick="mostrarCadastro()">
+                            Criar conta de administrador
+                        </button>
+                    </div>
+                </form>
+
+                <!-- FORMULÁRIO DE CADASTRO -->
+                <form id="formCadastro" class="d-none"
+                      onsubmit="cadastrarAdmin(event)">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                               id="cadNome" placeholder="Nome completo"
+                               maxlength="100" required>
+                        <label for="cadNome">Nome completo</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"
+                               id="cadUsuario" placeholder="Usuário"
+                               minlength="4" maxlength="30"
+                               autocomplete="username" required>
+                        <label for="cadUsuario">Nome de usuário</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control"
+                               id="cadSenha" placeholder="Senha"
+                               minlength="8"
+                               autocomplete="new-password" required>
+                        <label for="cadSenha">Senha (mínimo 8 caracteres)</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control"
+                               id="cadConfirmarSenha"
+                               placeholder="Confirmar senha"
+                               minlength="8"
+                               autocomplete="new-password" required>
+                        <label for="cadConfirmarSenha">Confirmar senha</label>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-cafe w-100 py-2 fw-bold">
+                        <i class="fas fa-user-plus me-2"></i>
+                        Criar Conta
                     </button>
+
+                    <div class="text-center mt-3">
+                        <button type="button"
+                                id="btnVoltarLogin"
+                                class="btn btn-link btn-sm"
+                                onclick="mostrarLogin()">
+                            Voltar para o login
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD ADMIN -->
+    <div id="secDashboard" class="d-none">
+
+        <div class="d-flex flex-wrap justify-content-between
+                        align-items-center gap-3 mb-4">
+            <div>
+                <h2 class="fw-bold m-0">
+                    <i class="fas fa-user-shield me-2 text-danger"></i>
+                    Painel do Administrador
+                </h2>
+                <p class="text-muted m-0">
+                    Bem-vindo(a), <strong id="nomeAdminLogado"></strong>.
+                </p>
+                <small class="text-muted">
+                    Gerencie os pedidos recebidos do Java Café.
+                </small>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-danger btn-sm"
+                        onclick="limparTudoAdmin()">
+                    <i class="fas fa-trash me-1"></i>
+                    Limpar Histórico
+                </button>
+
+                <button class="btn btn-outline-secondary btn-sm"
+                        onclick="logoutAdmin()">
+                    <i class="fas fa-power-off me-1"></i>
+                    Sair do Admin
+                </button>
+            </div>
+        </div>
+
+        <!-- CARDS DE MÉTRICAS -->
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-4">
+                <div class="card-stat p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted">Total de Pedidos</small>
+                            <h4 class="fw-bold m-0" id="statTotalPedidos">0</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- CARDS DE MÉTRICAS -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <div class="card-stat p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
-                                <i class="fas fa-shopping-bag"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted">Total de Pedidos</small>
-                                <h4 class="fw-bold m-0" id="statTotalPedidos">0</h4>
-                            </div>
+            <div class="col-md-4">
+                <div class="card-stat p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+                            <i class="fas fa-dollar-sign"></i>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-stat p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted">Faturamento Total</small>
-                                <h4 class="fw-bold m-0" id="statFaturamento">R$ 0,00</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-stat p-3">
-                        <div class="d-flex align-items-center">
-                            <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted">Em Preparo</small>
-                                <h4 class="fw-bold m-0" id="statEmPreparo">0</h4>
-                            </div>
+                        <div>
+                            <small class="text-muted">Faturamento Total</small>
+                            <h4 class="fw-bold m-0" id="statFaturamento">R$ 0,00</h4>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TABELA DE PEDIDOS -->
-            <div class="card border-0 shadow-sm rounded-3 mb-5">
-                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="m-0 fw-bold"><i class="fas fa-list-check me-2 text-primary"></i>Pedidos Recebidos</h5>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="carregarPedidos()"><i class="fas fa-sync me-1"></i> Atualizar</button>
+            <div class="col-md-4">
+                <div class="card-stat p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted">Em Preparo</small>
+                            <h4 class="fw-bold m-0" id="statEmPreparo">0</h4>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+        </div>
+
+        <!-- GERENCIAMENTO DE ADMINISTRADORES -->
+        <div class="card border-0 shadow-sm rounded-3 mb-5">
+
+            <div class="card-header bg-white py-3">
+                <h5 class="m-0 fw-bold">
+                    <i class="fas fa-users-cog me-2 text-danger"></i>
+                    Contas de Administradores
+                </h5>
+            </div>
+
+            <div class="card-body">
+
+                <p class="text-muted">
+                    Cadastre outras contas ou remova administradores existentes.
+                </p>
+
+                <form id="formNovoAdmin" onsubmit="adicionarOutroAdmin(event)"
+                      class="row g-3 mb-4">
+
+                    <div class="col-md-4">
+                        <label for="novoNome" class="form-label">Nome completo</label>
+                        <input type="text" id="novoNome" class="form-control"
+                               maxlength="100" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="novoUsuario" class="form-label">Usuário</label>
+                        <input type="text" id="novoUsuario" class="form-control"
+                               minlength="4" maxlength="30" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="novaSenha" class="form-label">Senha</label>
+                        <input type="password" id="novaSenha" class="form-control"
+                               minlength="8" autocomplete="new-password" required>
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="fas fa-plus me-1"></i> Adicionar
+                        </button>
+                    </div>
+                </form>
+
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle">
                         <thead class="table-light">
-                            <tr>
-                                <th>#ID</th>
-                                <th>Data / Hora</th>
-                                <th>Local / Mesa</th>
-                                <th>Itens do Pedido</th>
-                                <th>Total</th>
-                                <th>Status Atual</th>
-                                <th>Ações de Status</th>
-                            </tr>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Usuário</th>
+                            <th>Conta atual</th>
+                            <th>Ação</th>
+                        </tr>
                         </thead>
-                        <tbody id="tabelaPedidos">
-                            <!-- Gerado Dinamicamente -->
-                        </tbody>
+                        <tbody id="tabelaAdmins"></tbody>
                     </table>
                 </div>
+
+                <div class="alert alert-warning mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Ao excluir todas as contas, o sistema exibirá novamente
+                    a tela de criação da primeira conta.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TABELA DE PEDIDOS -->
+        <div class="card border-0 shadow-sm rounded-3 mb-5">
+
+            <div class="card-header bg-white py-3 d-flex flex-wrap
+                            justify-content-between align-items-center gap-2">
+                <h5 class="m-0 fw-bold">
+                    <i class="fas fa-list-check me-2 text-primary"></i>
+                    Pedidos Recebidos
+                </h5>
+
+                <button class="btn btn-sm btn-outline-secondary"
+                        onclick="carregarPedidos()">
+                    <i class="fas fa-sync me-1"></i> Atualizar
+                </button>
             </div>
 
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th>#ID</th>
+                        <th>Data / Hora</th>
+                        <th>Local / Mesa</th>
+                        <th>Itens do Pedido</th>
+                        <th>Total</th>
+                        <th>Status Atual</th>
+                        <th>Ações de Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabelaPedidos"></tbody>
+                </table>
+            </div>
         </div>
 
-    </main>
+    </div>
 
-    <!-- FOOTER SIMPLIFICADO -->
-    <footer>
-        <div class="container text-center">
-            <p class="mb-0">
-                &copy; 2026 Java Café. Todos os direitos reservados. ☕
-            </p>
-        </div>
-    </footer>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FOOTER -->
+<footer>
+    <div class="container text-center">
+        <p class="mb-0">
+            &copy; 2026 Java Café. Todos os direitos reservados. ☕
+        </p>
+    </div>
+</footer>
 
-    <script>
-        // CHAVES DO LOCALSTORAGE PARA COMPATIBILIDADE TOTAL
-        const CHAVE_HISTORICO = 'javaCafeHistoricoPedidos';
-        const CHAVE_STORAGE_SEC = 'pedidos_javacafe';
-        const CHAVE_STORAGE_TER = 'javaCafe_pedidos';
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        let isAdminLoggedIn = localStorage.getItem('javaCafe_isAdmin') === 'true';
+<script>
+    // =====================================================
+    // CHAVES DO SISTEMA
+    // =====================================================
 
-        document.addEventListener('DOMContentLoaded', () => {
-            atualizarInterface();
-            
-            // Ouve alterações de outras abas em tempo real
-            window.addEventListener('storage', carregarPedidos);
+    const CHAVE_ADMINS = 'javaCafe_admins';
+    const CHAVE_SESSAO = 'javaCafe_adminLogado';
 
-            // Atualização periódica a cada 4 segundos
-            setInterval(() => {
-                if (isAdminLoggedIn) carregarPedidos();
-            }, 4000);
+    const CHAVE_HISTORICO = 'javaCafeHistoricoPedidos';
+    const CHAVE_STORAGE_SEC = 'pedidos_javacafe';
+    const CHAVE_STORAGE_TER = 'javaCafe_pedidos';
+
+    let adminLogado = null;
+
+    // =====================================================
+    // INICIALIZAÇÃO
+    // =====================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+        verificarSessao();
+
+        window.addEventListener('storage', (evento) => {
+            if (evento.key === CHAVE_ADMINS ||
+                evento.key === CHAVE_SESSAO) {
+                verificarSessao();
+            }
+
+            if ([CHAVE_HISTORICO, CHAVE_STORAGE_SEC,
+                 CHAVE_STORAGE_TER].includes(evento.key)) {
+                if (adminLogado) carregarPedidos();
+            }
         });
 
-        function realizarLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('loginUser').value;
-            const pass = document.getElementById('loginPass').value;
+        setInterval(() => {
+            if (adminLogado) carregarPedidos();
+        }, 4000);
+    });
 
-            if (user === 'admin' && pass === 'java123') {
-                localStorage.setItem('javaCafe_isAdmin', 'true');
-                isAdminLoggedIn = true;
-                atualizarInterface();
-            } else {
-                alert('Usuário ou senha incorretos! (Padrão: admin / java123)');
-            }
+    // =====================================================
+    // CONTAS DOS ADMINISTRADORES
+    // =====================================================
+
+    function obterAdmins() {
+        try {
+            const dados = JSON.parse(
+                localStorage.getItem(CHAVE_ADMINS) || '[]'
+            );
+
+            return Array.isArray(dados) ? dados : [];
+        } catch (erro) {
+            return [];
         }
+    }
 
-        function logoutAdmin() {
-            localStorage.setItem('javaCafe_isAdmin', 'false');
-            isAdminLoggedIn = false;
+    function salvarAdmins(admins) {
+        localStorage.setItem(CHAVE_ADMINS, JSON.stringify(admins));
+    }
+
+    function verificarSessao() {
+        const admins = obterAdmins();
+        const usuarioSessao = localStorage.getItem(CHAVE_SESSAO);
+
+        // Se não houver contas, exige o cadastro inicial.
+        if (admins.length === 0) {
+            adminLogado = null;
+            localStorage.removeItem(CHAVE_SESSAO);
             atualizarInterface();
+            mostrarCadastro();
+            return;
         }
 
-        function handleAuth() {
-            if (isAdminLoggedIn) logoutAdmin();
-            else {
-                document.getElementById('secLogin').scrollIntoView({ behavior: 'smooth' });
-            }
+        // A sessão só permanece válida se a conta existir.
+        adminLogado = admins.find(
+            admin => admin.usuario === usuarioSessao
+        ) || null;
+
+        if (!adminLogado) {
+            localStorage.removeItem(CHAVE_SESSAO);
         }
 
-        function atualizarInterface() {
-            const secLogin = document.getElementById('secLogin');
-            const secDashboard = document.getElementById('secDashboard');
-            const btnAuth = document.getElementById('btnLoginLogout');
+        atualizarInterface();
+    }
 
-            if (isAdminLoggedIn) {
-                secLogin.classList.add('d-none');
-                secDashboard.classList.remove('d-none');
-                btnAuth.innerHTML = '<i class="fas fa-sign-out-alt me-1"></i> Sair';
-                carregarPedidos();
+    function mostrarCadastro() {
+        const admins = obterAdmins();
+        const primeiroAcesso = admins.length === 0;
+
+        document.getElementById('secLogin').classList.remove('d-none');
+        document.getElementById('secDashboard').classList.add('d-none');
+
+        document.getElementById('formLogin').classList.add('d-none');
+        document.getElementById('formCadastro').classList.remove('d-none');
+
+        document.getElementById('avisoPrimeiroAcesso')
+            .classList.toggle('d-none', !primeiroAcesso);
+
+        document.getElementById('tituloLogin').textContent =
+            primeiroAcesso
+                ? 'Criar Primeiro Administrador'
+                : 'Criar Conta de Administrador';
+
+        document.getElementById('textoLogin').textContent =
+            primeiroAcesso
+                ? 'Cadastre a primeira conta para liberar o painel.'
+                : 'Cadastre uma conta de administrador.';
+
+        document.getElementById('btnVoltarLogin')
+            .classList.toggle('d-none', primeiroAcesso);
+
+        document.getElementById('btnLoginLogout').innerHTML =
+            '<i class="fas fa-user-plus me-1"></i> Criar Conta';
+    }
+
+    function mostrarLogin() {
+        if (obterAdmins().length === 0) {
+            mostrarCadastro();
+            return;
+        }
+
+        document.getElementById('formCadastro').classList.add('d-none');
+        document.getElementById('formLogin').classList.remove('d-none');
+
+        document.getElementById('avisoPrimeiroAcesso')
+            .classList.add('d-none');
+
+        document.getElementById('tituloLogin').textContent =
+            'Acesso Restrito';
+
+        document.getElementById('textoLogin').textContent =
+            'Entre com sua conta de administrador do Java Café.';
+
+        document.getElementById('btnVoltarLogin')
+            .classList.remove('d-none');
+
+        document.getElementById('btnLoginLogout').innerHTML =
+            '<i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin';
+    }
+
+    function cadastrarAdmin(event) {
+        event.preventDefault();
+
+        const nome = document.getElementById('cadNome').value.trim();
+        const usuario = document.getElementById('cadUsuario').value.trim();
+        const senha = document.getElementById('cadSenha').value;
+        const confirmar = document.getElementById('cadConfirmarSenha').value;
+
+        const admins = obterAdmins();
+
+        if (nome.length < 2) {
+            alert('Informe seu nome completo.');
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9_.-]{4,30}$/.test(usuario)) {
+            alert('O usuário deve ter de 4 a 30 caracteres e usar apenas letras, números, ponto, hífen ou sublinhado.');
+            return;
+        }
+
+        if (senha.length < 8) {
+            alert('A senha deve ter pelo menos 8 caracteres.');
+            return;
+        }
+
+        if (senha !== confirmar) {
+            alert('As senhas não coincidem.');
+            return;
+        }
+
+        if (admins.some(a =>
+            a.usuario.toLowerCase() === usuario.toLowerCase()
+        )) {
+            alert('Esse nome de usuário já está cadastrado.');
+            return;
+        }
+
+        const novoAdmin = {
+            id: (crypto.randomUUID
+                ? crypto.randomUUID()
+                : String(Date.now()) + Math.random().toString(16).slice(2)),
+            nome: nome,
+            usuario: usuario,
+            senha: senha
+        };
+
+        admins.push(novoAdmin);
+        salvarAdmins(admins);
+
+        document.getElementById('formCadastro').reset();
+
+        // Primeiro administrador: entra automaticamente.
+        // Cadastros seguintes: retornam ao login.
+        if (admins.length === 1) {
+            localStorage.setItem(CHAVE_SESSAO, novoAdmin.usuario);
+            adminLogado = novoAdmin;
+
+            alert('Primeira conta de administrador criada com sucesso!');
+            atualizarInterface();
+        } else {
+            alert('Conta de administrador criada com sucesso!');
+            mostrarLogin();
+            document.getElementById('loginUser').value = novoAdmin.usuario;
+        }
+    }
+
+    function adicionarOutroAdmin(event) {
+        event.preventDefault();
+
+        if (!adminLogado) {
+            alert('Faça login para continuar.');
+            verificarSessao();
+            return;
+        }
+
+        const nome = document.getElementById('novoNome').value.trim();
+        const usuario = document.getElementById('novoUsuario').value.trim();
+        const senha = document.getElementById('novaSenha').value;
+
+        const admins = obterAdmins();
+
+        if (nome.length < 2) {
+            alert('Informe o nome completo.');
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9_.-]{4,30}$/.test(usuario)) {
+            alert('O usuário deve ter de 4 a 30 caracteres e usar apenas letras, números, ponto, hífen ou sublinhado.');
+            return;
+        }
+
+        if (senha.length < 8) {
+            alert('A senha deve ter pelo menos 8 caracteres.');
+            return;
+        }
+
+        if (admins.some(a =>
+            a.usuario.toLowerCase() === usuario.toLowerCase()
+        )) {
+            alert('Esse nome de usuário já está cadastrado.');
+            return;
+        }
+
+        admins.push({
+            id: (crypto.randomUUID
+                ? crypto.randomUUID()
+                : String(Date.now()) + Math.random().toString(16).slice(2)),
+            nome: nome,
+            usuario: usuario,
+            senha: senha
+        });
+
+        salvarAdmins(admins);
+
+        document.getElementById('formNovoAdmin').reset();
+
+        renderizarAdmins();
+
+        alert('Novo administrador cadastrado com sucesso!');
+    }
+
+    function renderizarAdmins() {
+        const tbody = document.getElementById('tabelaAdmins');
+        const admins = obterAdmins();
+
+        tbody.innerHTML = '';
+
+        if (admins.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-3">
+                        Nenhum administrador cadastrado.
+                    </td>
+                </tr>`;
+            return;
+        }
+
+        admins.forEach(admin => {
+            const tr = document.createElement('tr');
+
+            const tdNome = document.createElement('td');
+            tdNome.textContent = admin.nome;
+
+            const tdUsuario = document.createElement('td');
+            tdUsuario.textContent = admin.usuario;
+
+            const tdAtual = document.createElement('td');
+
+            if (adminLogado &&
+                admin.usuario === adminLogado.usuario) {
+                const badge = document.createElement('span');
+                badge.className = 'badge bg-success';
+                badge.textContent = 'Conta atual';
+                tdAtual.appendChild(badge);
             } else {
-                secLogin.classList.remove('d-none');
-                secDashboard.classList.add('d-none');
-                btnAuth.innerHTML = '<i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin';
+                tdAtual.textContent = 'Administrador';
             }
-        }
 
-        function obterTodosPedidos() {
-            const d1 = localStorage.getItem(CHAVE_HISTORICO);
-            const d2 = localStorage.getItem(CHAVE_STORAGE_SEC);
-            const d3 = localStorage.getItem(CHAVE_STORAGE_TER);
+            const tdAcao = document.createElement('td');
+            const botao = document.createElement('button');
 
-            let lista = [];
-            if (d1) lista = lista.concat(JSON.parse(d1));
-            if (d2) lista = lista.concat(JSON.parse(d2));
-            if (d3) lista = lista.concat(JSON.parse(d3));
+            botao.type = 'button';
+            botao.className = 'btn btn-sm btn-outline-danger';
+            botao.innerHTML = '<i class="fas fa-trash me-1"></i> Excluir';
 
-            // Remove duplicados pelo ID do pedido
-            const mapaUnico = new Map();
-            lista.forEach(p => {
-                const id = p.id || p.numero;
-                if (id && !mapaUnico.has(String(id))) {
-                    mapaUnico.set(String(id), p);
-                }
+            botao.addEventListener('click', () => {
+                excluirAdmin(admin.id);
             });
 
-            return Array.from(mapaUnico.values());
+            tdAcao.appendChild(botao);
+
+            tr.append(tdNome, tdUsuario, tdAtual, tdAcao);
+            tbody.appendChild(tr);
+        });
+    }
+
+    function excluirAdmin(id) {
+        if (!adminLogado) {
+            alert('Faça login para continuar.');
+            return;
         }
 
-        function salvarPedidosGlobais(pedidos) {
-            const jsonStr = JSON.stringify(pedidos);
-            localStorage.setItem(CHAVE_HISTORICO, jsonStr);
-            localStorage.setItem(CHAVE_STORAGE_SEC, jsonStr);
-            localStorage.setItem(CHAVE_STORAGE_TER, jsonStr);
+        const admins = obterAdmins();
+        const adminAlvo = admins.find(a => a.id === id);
+
+        if (!adminAlvo) return;
+
+        const ePropriaConta = adminAlvo.usuario === adminLogado.usuario;
+
+        const mensagem = ePropriaConta
+            ? 'Deseja excluir sua própria conta? Você será desconectado.'
+            : `Deseja excluir a conta de ${adminAlvo.nome}?`;
+
+        if (!confirm(mensagem)) return;
+
+        const restantes = admins.filter(a => a.id !== id);
+        salvarAdmins(restantes);
+
+        // Se a conta atual foi excluída ou não há mais contas,
+        // encerra a sessão e volta à tela adequada.
+        if (ePropriaConta || restantes.length === 0) {
+            adminLogado = null;
+            localStorage.removeItem(CHAVE_SESSAO);
+            atualizarInterface();
+            verificarSessao();
+            return;
         }
 
-        function carregarPedidos() {
-            const pedidos = obterTodosPedidos();
-            const tbody = document.getElementById('tabelaPedidos');
-            tbody.innerHTML = '';
+        renderizarAdmins();
 
-            let totalFaturamento = 0;
-            let countPreparo = 0;
+        alert('Conta de administrador excluída.');
+    }
 
-            if (!pedidos || pedidos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Nenhum pedido registrado no sistema ainda.</td></tr>`;
-            } else {
-                // Exibe os pedidos mais recentes primeiro
-                [...pedidos].reverse().forEach(p => {
-                    const id = p.id || p.numero || 'N/A';
-                    
-                    // Tratamento da Data e Hora do Pedido
-                    let dataHoraFormatada = p.dataHora || p.data || p.hora;
-                    if (!dataHoraFormatada) {
-                        const agora = new Date();
-                        dataHoraFormatada = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-                    }
+    // =====================================================
+    // LOGIN E LOGOUT
+    // =====================================================
 
-                    // Identificação do local/mesa
-                    let clienteOuMesa = p.tipoConsumo || p.cliente || p.nomeCliente || 'Balcão';
-                    if (p.mesa && p.mesa !== 'N/A') {
-                        clienteOuMesa += ` (Mesa ${p.mesa})`;
-                    }
+    function realizarLogin(event) {
+        event.preventDefault();
 
-                    const status = p.status || 'Pendente';
+        const usuario = document.getElementById('loginUser').value.trim();
+        const senha = document.getElementById('loginPass').value;
 
-                    // Cálculo do Total
-                    let totalVal = 0;
-                    if (typeof p.total === 'number') {
-                        totalVal = p.total;
-                    } else if (typeof p.total === 'string') {
-                        totalVal = parseFloat(p.total.replace('R$', '').replace(',', '.').trim()) || 0;
-                    }
+        const admin = obterAdmins().find(a =>
+            a.usuario.toLowerCase() === usuario.toLowerCase() &&
+            a.senha === senha
+        );
 
-                    totalFaturamento += totalVal;
-
-                    if (status.toLowerCase().includes('preparo')) {
-                        countPreparo++;
-                    }
-
-                    // Formatação da Lista de Itens
-                    let stringItens = '';
-                    if (Array.isArray(p.itens)) {
-                        stringItens = p.itens.map(item => {
-                            if (typeof item === 'string') return item;
-                            const qtd = item.quantidade || item.qtd || 1;
-                            const nome = item.nome || item.titulo || 'Item';
-                            return `${qtd}x ${nome}`;
-                        }).join(', ');
-                    } else if (typeof p.itens === 'string') {
-                        stringItens = p.itens;
-                    } else {
-                        stringItens = 'Itens variados';
-                    }
-
-                    // Classe e estilo da Badge
-                    let statusClass = 'pendente';
-                    if (status.toLowerCase().includes('preparo')) statusClass = 'preparo';
-                    else if (status.toLowerCase().includes('pronto')) statusClass = 'pronto';
-                    else if (status.toLowerCase().includes('concluído') || status.toLowerCase().includes('finalizado')) statusClass = 'finalizado';
-
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td class="fw-bold">#${id}</td>
-                        <td><small class="text-muted"><i class="far fa-clock me-1"></i>${dataHoraFormatada}</small></td>
-                        <td><strong>${clienteOuMesa}</strong></td>
-                        <td><small class="text-secondary">${stringItens}</small></td>
-                        <td class="fw-bold text-success">R$ ${totalVal.toFixed(2).replace('.', ',')}</td>
-                        <td><span class="badge badge-${statusClass}">${status}</span></td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <select class="form-select form-select-sm" onchange="alterarStatus('${id}', this.value)">
-                                    <option value="Pendente" ${status === 'Pendente' ? 'selected' : ''}>Pendente</option>
-                                    <option value="Em Preparo" ${status === 'Em Preparo' ? 'selected' : ''}>Em Preparo</option>
-                                    <option value="Pronto" ${status === 'Pronto' ? 'selected' : ''}>Pronto</option>
-                                    <option value="Concluído" ${status === 'Concluído' ? 'selected' : ''}>Concluído</option>
-                                </select>
-                                <button class="btn btn-sm btn-outline-danger" onclick="excluirPedido('${id}')" title="Excluir">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            }
-
-            // Atualização dos Cards de Métricas
-            document.getElementById('statTotalPedidos').innerText = pedidos.length;
-            document.getElementById('statFaturamento').innerText = `R$ ${totalFaturamento.toFixed(2).replace('.', ',')}`;
-            document.getElementById('statEmPreparo').innerText = countPreparo;
+        if (!admin) {
+            alert('Usuário ou senha incorretos.');
+            return;
         }
 
-        function alterarStatus(id, novoStatus) {
-            let pedidos = obterTodosPedidos();
+        localStorage.setItem(CHAVE_SESSAO, admin.usuario);
+        adminLogado = admin;
 
-            pedidos = pedidos.map(p => {
-                const pId = p.id || p.numero;
-                if (String(pId) === String(id)) {
-                    p.status = novoStatus;
-                }
-                return p;
-            });
+        document.getElementById('formLogin').reset();
 
-            salvarPedidosGlobais(pedidos);
+        atualizarInterface();
+    }
+
+    function logoutAdmin() {
+        localStorage.removeItem(CHAVE_SESSAO);
+        adminLogado = null;
+        atualizarInterface();
+    }
+
+    function handleAuth() {
+        if (adminLogado) {
+            logoutAdmin();
+        } else if (obterAdmins().length === 0) {
+            mostrarCadastro();
+        } else {
+            mostrarLogin();
+
+            document.getElementById('secLogin')
+                .scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function atualizarInterface() {
+        const secLogin = document.getElementById('secLogin');
+        const secDashboard = document.getElementById('secDashboard');
+        const btnAuth = document.getElementById('btnLoginLogout');
+
+        // Confere novamente se a conta ainda existe.
+        const admins = obterAdmins();
+
+        if (adminLogado &&
+            !admins.some(a => a.usuario === adminLogado.usuario)) {
+            adminLogado = null;
+            localStorage.removeItem(CHAVE_SESSAO);
+        }
+
+        if (adminLogado) {
+            secLogin.classList.add('d-none');
+            secDashboard.classList.remove('d-none');
+
+            btnAuth.innerHTML =
+                '<i class="fas fa-sign-out-alt me-1"></i> Sair';
+
+            document.getElementById('nomeAdminLogado').textContent =
+                adminLogado.nome;
+
             carregarPedidos();
-        }
+            renderizarAdmins();
+        } else {
+            secLogin.classList.remove('d-none');
+            secDashboard.classList.add('d-none');
 
-        function excluirPedido(id) {
-            if (confirm(`Deseja remover o pedido #${id}?`)) {
-                let pedidos = obterTodosPedidos();
-                pedidos = pedidos.filter(p => String(p.id || p.numero) !== String(id));
-                salvarPedidosGlobais(pedidos);
-                carregarPedidos();
+            if (admins.length === 0) {
+                mostrarCadastro();
+            } else {
+                mostrarLogin();
             }
         }
+    }
 
-        function limparTudoAdmin() {
-            if (confirm("Tem certeza de que deseja apagar TODOS os pedidos salvos?")) {
-                localStorage.removeItem(CHAVE_HISTORICO);
-                localStorage.removeItem(CHAVE_STORAGE_SEC);
-                localStorage.removeItem(CHAVE_STORAGE_TER);
-                carregarPedidos();
+    // =====================================================
+    // PEDIDOS
+    // =====================================================
+
+    function obterTodosPedidos() {
+        const chaves = [
+            CHAVE_HISTORICO,
+            CHAVE_STORAGE_SEC,
+            CHAVE_STORAGE_TER
+        ];
+
+        const lista = [];
+
+        chaves.forEach(chave => {
+            try {
+                const dados = JSON.parse(
+                    localStorage.getItem(chave) || '[]'
+                );
+
+                if (Array.isArray(dados)) {
+                    lista.push(...dados);
+                }
+            } catch (erro) {
+                console.error('Erro ao ler pedidos:', chave, erro);
             }
+        });
+
+        const mapaUnico = new Map();
+
+        lista.forEach(p => {
+            const id = p.id || p.numero;
+
+            if (id !== undefined && id !== null &&
+                !mapaUnico.has(String(id))) {
+                mapaUnico.set(String(id), p);
+            }
+        });
+
+        return Array.from(mapaUnico.values());
+    }
+
+    function salvarPedidosGlobais(pedidos) {
+        const json = JSON.stringify(pedidos);
+
+        localStorage.setItem(CHAVE_HISTORICO, json);
+        localStorage.setItem(CHAVE_STORAGE_SEC, json);
+        localStorage.setItem(CHAVE_STORAGE_TER, json);
+    }
+
+    function carregarPedidos() {
+        if (!adminLogado) return;
+
+        const pedidos = obterTodosPedidos();
+        const tbody = document.getElementById('tabelaPedidos');
+
+        tbody.innerHTML = '';
+
+        let totalFaturamento = 0;
+        let countPreparo = 0;
+
+        if (pedidos.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center py-4 text-muted">
+                        Nenhum pedido registrado no sistema ainda.
+                    </td>
+                </tr>`;
         }
-    </script>
+
+        [...pedidos].reverse().forEach(p => {
+            const id = p.id || p.numero || 'N/A';
+
+            let dataHora = p.dataHora || p.data || p.hora || '';
+
+            if (!dataHora) {
+                dataHora = new Date().toLocaleString('pt-BR');
+            }
+
+            let localMesa = p.tipoConsumo ||
+                            p.cliente ||
+                            p.nomeCliente ||
+                            'Balcão';
+
+            if (p.mesa && p.mesa !== 'N/A') {
+                localMesa += ` (Mesa ${p.mesa})`;
+            }
+
+            const status = p.status || 'Pendente';
+
+            let total = 0;
+
+            if (typeof p.total === 'number') {
+                total = p.total;
+            } else if (typeof p.total === 'string') {
+                total = parseFloat(
+                    p.total.replace(/[^\d,.-]/g, '').replace(',', '.')
+                ) || 0;
+            }
+
+            totalFaturamento += total;
+
+            if (status.toLowerCase().includes('preparo')) {
+                countPreparo++;
+            }
+
+            let itens = 'Itens variados';
+
+            if (Array.isArray(p.itens)) {
+                itens = p.itens.map(item => {
+                    if (typeof item === 'string') return item;
+
+                    const qtd = item.quantidade || item.qtd || 1;
+                    const nome = item.nome || item.titulo || 'Item';
+
+                    return `${qtd}x ${nome}`;
+                }).join(', ');
+            } else if (typeof p.itens === 'string') {
+                itens = p.itens;
+            }
+
+            let classe = 'pendente';
+            const statusLower = status.toLowerCase();
+
+            if (statusLower.includes('preparo')) classe = 'preparo';
+            else if (statusLower.includes('pronto')) classe = 'pronto';
+            else if (statusLower.includes('concluído') ||
+                     statusLower.includes('finalizado')) {
+                classe = 'finalizado';
+            }
+
+            const tr = document.createElement('tr');
+
+            const tdId = document.createElement('td');
+            tdId.className = 'fw-bold';
+            tdId.textContent = '#' + id;
+
+            const tdData = document.createElement('td');
+            const smallData = document.createElement('small');
+            smallData.className = 'text-muted';
+            smallData.textContent = dataHora;
+            tdData.appendChild(smallData);
+
+            const tdLocal = document.createElement('td');
+            const strongLocal = document.createElement('strong');
+            strongLocal.textContent = localMesa;
+            tdLocal.appendChild(strongLocal);
+
+            const tdItens = document.createElement('td');
+            const smallItens = document.createElement('small');
+            smallItens.className = 'text-secondary';
+            smallItens.textContent = itens;
+            tdItens.appendChild(smallItens);
+
+            const tdTotal = document.createElement('td');
+            tdTotal.className = 'fw-bold text-success';
+            tdTotal.textContent = 'R$ ' +
+                total.toFixed(2).replace('.', ',');
+
+            const tdStatus = document.createElement('td');
+            const badge = document.createElement('span');
+            badge.className = 'badge badge-' + classe;
+            badge.textContent = status;
+            tdStatus.appendChild(badge);
+
+            const tdAcoes = document.createElement('td');
+            const grupo = document.createElement('div');
+            grupo.className = 'd-flex gap-1';
+
+            const select = document.createElement('select');
+            select.className = 'form-select form-select-sm';
+
+            ['Pendente', 'Em Preparo', 'Pronto', 'Concluído']
+                .forEach(opcao => {
+                    const option = document.createElement('option');
+                    option.value = opcao;
+                    option.textContent = opcao;
+                    option.selected = status === opcao;
+                    select.appendChild(option);
+                });
+
+            select.addEventListener('change', () => {
+                alterarStatus(id, select.value);
+            });
+
+            const btnExcluir = document.createElement('button');
+            btnExcluir.className = 'btn btn-sm btn-outline-danger';
+            btnExcluir.title = 'Excluir';
+            btnExcluir.innerHTML = '<i class="fas fa-trash"></i>';
+            btnExcluir.addEventListener('click', () => excluirPedido(id));
+
+            grupo.append(select, btnExcluir);
+            tdAcoes.appendChild(grupo);
+
+            tr.append(
+                tdId, tdData, tdLocal, tdItens,
+                tdTotal, tdStatus, tdAcoes
+            );
+
+            tbody.appendChild(tr);
+        });
+
+        document.getElementById('statTotalPedidos').textContent =
+            pedidos.length;
+
+        document.getElementById('statFaturamento').textContent =
+            'R$ ' + totalFaturamento.toFixed(2).replace('.', ',');
+
+        document.getElementById('statEmPreparo').textContent =
+            countPreparo;
+    }
+
+    function alterarStatus(id, novoStatus) {
+        if (!adminLogado) return;
+
+        const pedidos = obterTodosPedidos().map(p => {
+            if (String(p.id || p.numero) === String(id)) {
+                return { ...p, status: novoStatus };
+            }
+
+            return p;
+        });
+
+        salvarPedidosGlobais(pedidos);
+        carregarPedidos();
+    }
+
+    function excluirPedido(id) {
+        if (!adminLogado) return;
+
+        if (!confirm(`Deseja remover o pedido #${id}?`)) return;
+
+        const pedidos = obterTodosPedidos().filter(
+            p => String(p.id || p.numero) !== String(id)
+        );
+
+        salvarPedidosGlobais(pedidos);
+        carregarPedidos();
+    }
+
+    function limparTudoAdmin() {
+        if (!adminLogado) return;
+
+        if (!confirm('Tem certeza de que deseja apagar TODOS os pedidos salvos?')) {
+            return;
+        }
+
+        localStorage.removeItem(CHAVE_HISTORICO);
+        localStorage.removeItem(CHAVE_STORAGE_SEC);
+        localStorage.removeItem(CHAVE_STORAGE_TER);
+
+        carregarPedidos();
+    }
+</script>
+
 </body>
 </html>
