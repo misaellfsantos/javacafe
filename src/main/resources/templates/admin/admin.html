@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR" class="h-100" xmlns:th="http://www.thymeleaf.org">
 
@@ -14,7 +15,6 @@
 
 <body class="h-100">
 
-<!-- MENU DO ADMIN -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
@@ -43,6 +43,7 @@
                     <li class="nav-item">
                         <button id="btnLoginLogout"
                                 class="btn btn-outline-light btn-sm ms-lg-3"
+                                type="button"
                                 onclick="handleAuth()">
                             <i class="fas fa-sign-in-alt me-1"></i>
                             Entrar como Admin
@@ -59,14 +60,12 @@
     <!-- LOGIN E CADASTRO -->
     <section id="secLogin" class="row justify-content-center my-5">
         <div class="col-md-6 col-lg-5">
-
             <div class="card shadow-sm border-0 rounded-4 p-4">
 
                 <div class="text-center mb-3 text-warning">
                     <i class="fas fa-lock fa-3x"></i>
                 </div>
 
-                <!-- PRIMEIRA CONTA -->
                 <div id="avisoPrimeiroAcesso"
                      class="alert alert-info text-center d-none">
                     <i class="fas fa-user-shield me-2"></i>
@@ -85,9 +84,8 @@
                     Entre com sua conta de administrador do Java Café.
                 </p>
 
-                <!-- FORMULÁRIO DE LOGIN -->
+                <!-- LOGIN -->
                 <form id="formLogin" onsubmit="realizarLogin(event)">
-
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control"
                                id="loginUser" placeholder="Usuário"
@@ -109,15 +107,14 @@
                     </button>
 
                     <div class="text-center mt-3">
-                        <button type="button"
-                                class="btn btn-link btn-sm"
+                        <button type="button" class="btn btn-link btn-sm"
                                 onclick="mostrarCadastro()">
                             Criar conta de administrador
                         </button>
                     </div>
                 </form>
 
-                <!-- FORMULÁRIO DE CADASTRO -->
+                <!-- CADASTRO -->
                 <form id="formCadastro" class="d-none"
                       onsubmit="cadastrarAdmin(event)">
 
@@ -139,8 +136,8 @@
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control"
                                id="cadSenha" placeholder="Senha"
-                               minlength="8"
-                               autocomplete="new-password" required>
+                               minlength="8" autocomplete="new-password"
+                               required>
                         <label for="cadSenha">Senha (mínimo 8 caracteres)</label>
                     </div>
 
@@ -148,8 +145,8 @@
                         <input type="password" class="form-control"
                                id="cadConfirmarSenha"
                                placeholder="Confirmar senha"
-                               minlength="8"
-                               autocomplete="new-password" required>
+                               minlength="8" autocomplete="new-password"
+                               required>
                         <label for="cadConfirmarSenha">Confirmar senha</label>
                     </div>
 
@@ -160,32 +157,32 @@
                     </button>
 
                     <div class="text-center mt-3">
-                        <button type="button"
-                                id="btnVoltarLogin"
+                        <button type="button" id="btnVoltarLogin"
                                 class="btn btn-link btn-sm"
                                 onclick="mostrarLogin()">
                             Voltar para o login
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </section>
 
-    <!-- DASHBOARD ADMIN -->
+    <!-- PAINEL ADMINISTRATIVO -->
     <div id="secDashboard" class="d-none">
 
         <div class="d-flex flex-wrap justify-content-between
-                        align-items-center gap-3 mb-4">
+                    align-items-center gap-3 mb-4">
             <div>
                 <h2 class="fw-bold m-0">
                     <i class="fas fa-user-shield me-2 text-danger"></i>
                     Painel do Administrador
                 </h2>
+
                 <p class="text-muted m-0">
                     Bem-vindo(a), <strong id="nomeAdminLogado"></strong>.
                 </p>
+
                 <small class="text-muted">
                     Gerencie os pedidos recebidos do Java Café.
                 </small>
@@ -193,22 +190,21 @@
 
             <div class="d-flex flex-wrap gap-2">
                 <button class="btn btn-outline-danger btn-sm"
-                        onclick="limparTudoAdmin()">
+                        type="button" onclick="limparTudoAdmin()">
                     <i class="fas fa-trash me-1"></i>
                     Limpar Histórico
                 </button>
 
                 <button class="btn btn-outline-secondary btn-sm"
-                        onclick="logoutAdmin()">
+                        type="button" onclick="logoutAdmin()">
                     <i class="fas fa-power-off me-1"></i>
                     Sair do Admin
                 </button>
             </div>
         </div>
 
-        <!-- CARDS DE MÉTRICAS -->
+        <!-- MÉTRICAS -->
         <div class="row g-3 mb-4">
-
             <div class="col-md-4">
                 <div class="card-stat p-3">
                     <div class="d-flex align-items-center">
@@ -250,12 +246,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- GERENCIAMENTO DE ADMINISTRADORES -->
+        <!-- ADMINISTRADORES -->
         <div class="card border-0 shadow-sm rounded-3 mb-5">
-
             <div class="card-header bg-white py-3">
                 <h5 class="m-0 fw-bold">
                     <i class="fas fa-users-cog me-2 text-danger"></i>
@@ -264,12 +258,12 @@
             </div>
 
             <div class="card-body">
-
                 <p class="text-muted">
-                    Cadastre outras contas ou remova administradores existentes.
+                    Cadastre outras contas ou remova somente a conta selecionada.
                 </p>
 
-                <form id="formNovoAdmin" onsubmit="adicionarOutroAdmin(event)"
+                <form id="formNovoAdmin"
+                      onsubmit="adicionarOutroAdmin(event)"
                       class="row g-3 mb-4">
 
                     <div class="col-md-4">
@@ -313,25 +307,23 @@
 
                 <div class="alert alert-warning mb-0">
                     <i class="fas fa-exclamation-triangle me-2"></i>
-                    Ao excluir todas as contas, o sistema exibirá novamente
-                    a tela de criação da primeira conta.
+                    A última conta de administrador não pode ser excluída.
+                    Cadastre outra conta antes de remover a atual.
                 </div>
-
             </div>
         </div>
 
-        <!-- TABELA DE PEDIDOS -->
+        <!-- PEDIDOS -->
         <div class="card border-0 shadow-sm rounded-3 mb-5">
-
             <div class="card-header bg-white py-3 d-flex flex-wrap
-                            justify-content-between align-items-center gap-2">
+                        justify-content-between align-items-center gap-2">
                 <h5 class="m-0 fw-bold">
                     <i class="fas fa-list-check me-2 text-primary"></i>
                     Pedidos Recebidos
                 </h5>
 
                 <button class="btn btn-sm btn-outline-secondary"
-                        onclick="carregarPedidos()">
+                        type="button" onclick="carregarPedidos()">
                     <i class="fas fa-sync me-1"></i> Atualizar
                 </button>
             </div>
@@ -353,12 +345,9 @@
                 </table>
             </div>
         </div>
-
     </div>
-
 </main>
 
-<!-- FOOTER -->
 <footer>
     <div class="container text-center">
         <p class="mb-0">
@@ -382,6 +371,7 @@
     const CHAVE_STORAGE_TER = 'javaCafe_pedidos';
 
     let adminLogado = null;
+    let intervaloPedidos = null;
 
     // =====================================================
     // INICIALIZAÇÃO
@@ -390,25 +380,25 @@
     document.addEventListener('DOMContentLoaded', () => {
         verificarSessao();
 
-        window.addEventListener('storage', (evento) => {
+        window.addEventListener('storage', evento => {
             if (evento.key === CHAVE_ADMINS ||
                 evento.key === CHAVE_SESSAO) {
                 verificarSessao();
             }
 
             if ([CHAVE_HISTORICO, CHAVE_STORAGE_SEC,
-                 CHAVE_STORAGE_TER].includes(evento.key)) {
+                CHAVE_STORAGE_TER].includes(evento.key)) {
                 if (adminLogado) carregarPedidos();
             }
         });
 
-        setInterval(() => {
+        intervaloPedidos = setInterval(() => {
             if (adminLogado) carregarPedidos();
         }, 4000);
     });
 
     // =====================================================
-    // CONTAS DOS ADMINISTRADORES
+    // ARMAZENAMENTO DAS CONTAS
     // =====================================================
 
     function obterAdmins() {
@@ -419,19 +409,39 @@
 
             return Array.isArray(dados) ? dados : [];
         } catch (erro) {
+            console.error('Erro ao carregar administradores:', erro);
             return [];
         }
     }
 
     function salvarAdmins(admins) {
-        localStorage.setItem(CHAVE_ADMINS, JSON.stringify(admins));
+        try {
+            localStorage.setItem(CHAVE_ADMINS, JSON.stringify(admins));
+            return true;
+        } catch (erro) {
+            console.error('Erro ao salvar administradores:', erro);
+            alert('Não foi possível salvar as contas neste navegador.');
+            return false;
+        }
+    }
+
+    function criarIdAdmin() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+            return window.crypto.randomUUID();
+        }
+
+        return String(Date.now()) +
+            Math.random().toString(16).slice(2);
+    }
+
+    function usuarioValido(usuario) {
+        return /^[a-zA-Z0-9_.-]{4,30}$/.test(usuario);
     }
 
     function verificarSessao() {
         const admins = obterAdmins();
         const usuarioSessao = localStorage.getItem(CHAVE_SESSAO);
 
-        // Se não houver contas, exige o cadastro inicial.
         if (admins.length === 0) {
             adminLogado = null;
             localStorage.removeItem(CHAVE_SESSAO);
@@ -440,9 +450,9 @@
             return;
         }
 
-        // A sessão só permanece válida se a conta existir.
-        adminLogado = admins.find(
-            admin => admin.usuario === usuarioSessao
+        adminLogado = admins.find(admin =>
+            admin.usuario.toLowerCase() ===
+            String(usuarioSessao || '').toLowerCase()
         ) || null;
 
         if (!adminLogado) {
@@ -452,9 +462,12 @@
         atualizarInterface();
     }
 
+    // =====================================================
+    // TELAS DE LOGIN E CADASTRO
+    // =====================================================
+
     function mostrarCadastro() {
-        const admins = obterAdmins();
-        const primeiroAcesso = admins.length === 0;
+        const primeiroAcesso = obterAdmins().length === 0;
 
         document.getElementById('secLogin').classList.remove('d-none');
         document.getElementById('secDashboard').classList.add('d-none');
@@ -507,6 +520,10 @@
             '<i class="fas fa-sign-in-alt me-1"></i> Entrar como Admin';
     }
 
+    // =====================================================
+    // CADASTRAR PRIMEIRO OU NOVO ADMINISTRADOR
+    // =====================================================
+
     function cadastrarAdmin(event) {
         event.preventDefault();
 
@@ -522,7 +539,7 @@
             return;
         }
 
-        if (!/^[a-zA-Z0-9_.-]{4,30}$/.test(usuario)) {
+        if (!usuarioValido(usuario)) {
             alert('O usuário deve ter de 4 a 30 caracteres e usar apenas letras, números, ponto, hífen ou sublinhado.');
             return;
         }
@@ -537,30 +554,28 @@
             return;
         }
 
-        if (admins.some(a =>
-            a.usuario.toLowerCase() === usuario.toLowerCase()
+        if (admins.some(admin =>
+            admin.usuario.toLowerCase() === usuario.toLowerCase()
         )) {
             alert('Esse nome de usuário já está cadastrado.');
             return;
         }
 
         const novoAdmin = {
-            id: (crypto.randomUUID
-                ? crypto.randomUUID()
-                : String(Date.now()) + Math.random().toString(16).slice(2)),
+            id: criarIdAdmin(),
             nome: nome,
             usuario: usuario,
             senha: senha
         };
 
-        admins.push(novoAdmin);
-        salvarAdmins(admins);
+        // A conta é salva antes de confirmar o cadastro.
+        if (!salvarAdmins([...admins, novoAdmin])) {
+            return;
+        }
 
         document.getElementById('formCadastro').reset();
 
-        // Primeiro administrador: entra automaticamente.
-        // Cadastros seguintes: retornam ao login.
-        if (admins.length === 1) {
+        if (admins.length === 0) {
             localStorage.setItem(CHAVE_SESSAO, novoAdmin.usuario);
             adminLogado = novoAdmin;
 
@@ -593,7 +608,7 @@
             return;
         }
 
-        if (!/^[a-zA-Z0-9_.-]{4,30}$/.test(usuario)) {
+        if (!usuarioValido(usuario)) {
             alert('O usuário deve ter de 4 a 30 caracteres e usar apenas letras, números, ponto, hífen ou sublinhado.');
             return;
         }
@@ -603,44 +618,50 @@
             return;
         }
 
-        if (admins.some(a =>
-            a.usuario.toLowerCase() === usuario.toLowerCase()
+        if (admins.some(admin =>
+            admin.usuario.toLowerCase() === usuario.toLowerCase()
         )) {
             alert('Esse nome de usuário já está cadastrado.');
             return;
         }
 
-        admins.push({
-            id: (crypto.randomUUID
-                ? crypto.randomUUID()
-                : String(Date.now()) + Math.random().toString(16).slice(2)),
+        const novoAdmin = {
+            id: criarIdAdmin(),
             nome: nome,
             usuario: usuario,
             senha: senha
-        });
+        };
 
-        salvarAdmins(admins);
+        if (!salvarAdmins([...admins, novoAdmin])) {
+            return;
+        }
 
         document.getElementById('formNovoAdmin').reset();
-
         renderizarAdmins();
 
         alert('Novo administrador cadastrado com sucesso!');
     }
 
+    // =====================================================
+    // LISTAR CONTAS
+    // =====================================================
+
     function renderizarAdmins() {
         const tbody = document.getElementById('tabelaAdmins');
         const admins = obterAdmins();
 
-        tbody.innerHTML = '';
+        tbody.replaceChildren();
 
         if (admins.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="4" class="text-center text-muted py-3">
-                        Nenhum administrador cadastrado.
-                    </td>
-                </tr>`;
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+
+            td.colSpan = 4;
+            td.className = 'text-center text-muted py-3';
+            td.textContent = 'Nenhum administrador cadastrado.';
+
+            tr.appendChild(td);
+            tbody.appendChild(tr);
             return;
         }
 
@@ -656,7 +677,8 @@
             const tdAtual = document.createElement('td');
 
             if (adminLogado &&
-                admin.usuario === adminLogado.usuario) {
+                admin.usuario.toLowerCase() ===
+                adminLogado.usuario.toLowerCase()) {
                 const badge = document.createElement('span');
                 badge.className = 'badge bg-success';
                 badge.textContent = 'Conta atual';
@@ -672,16 +694,25 @@
             botao.className = 'btn btn-sm btn-outline-danger';
             botao.innerHTML = '<i class="fas fa-trash me-1"></i> Excluir';
 
+            // Impede excluir a última conta.
+            botao.disabled = admins.length === 1;
+            botao.title = admins.length === 1
+                ? 'Cadastre outro administrador antes de excluir esta conta.'
+                : 'Excluir somente esta conta';
+
             botao.addEventListener('click', () => {
                 excluirAdmin(admin.id);
             });
 
             tdAcao.appendChild(botao);
-
             tr.append(tdNome, tdUsuario, tdAtual, tdAcao);
             tbody.appendChild(tr);
         });
     }
+
+    // =====================================================
+    // EXCLUIR APENAS A CONTA SELECIONADA
+    // =====================================================
 
     function excluirAdmin(id) {
         if (!adminLogado) {
@@ -690,34 +721,50 @@
         }
 
         const admins = obterAdmins();
-        const adminAlvo = admins.find(a => a.id === id);
+        const adminAlvo = admins.find(admin => admin.id === id);
 
-        if (!adminAlvo) return;
+        if (!adminAlvo) {
+            alert('Essa conta não foi encontrada.');
+            return;
+        }
 
-        const ePropriaConta = adminAlvo.usuario === adminLogado.usuario;
+        if (admins.length <= 1) {
+            alert(
+                'Não é possível excluir o último administrador. ' +
+                'Cadastre outra conta antes de excluir esta.'
+            );
+            return;
+        }
+
+        const ePropriaConta =
+            adminAlvo.usuario.toLowerCase() ===
+            adminLogado.usuario.toLowerCase();
 
         const mensagem = ePropriaConta
             ? 'Deseja excluir sua própria conta? Você será desconectado.'
-            : `Deseja excluir a conta de ${adminAlvo.nome}?`;
+            : `Deseja excluir somente a conta de ${adminAlvo.nome}?`;
 
-        if (!confirm(mensagem)) return;
+        if (!confirm(mensagem)) {
+            return;
+        }
 
-        const restantes = admins.filter(a => a.id !== id);
-        salvarAdmins(restantes);
+        const restantes = admins.filter(admin => admin.id !== id);
 
-        // Se a conta atual foi excluída ou não há mais contas,
-        // encerra a sessão e volta à tela adequada.
-        if (ePropriaConta || restantes.length === 0) {
+        if (!salvarAdmins(restantes)) {
+            return;
+        }
+
+        if (ePropriaConta) {
             adminLogado = null;
             localStorage.removeItem(CHAVE_SESSAO);
             atualizarInterface();
-            verificarSessao();
+            mostrarLogin();
+            alert('Sua conta foi excluída. As outras contas foram mantidas.');
             return;
         }
 
         renderizarAdmins();
-
-        alert('Conta de administrador excluída.');
+        alert('Conta excluída. As demais contas foram mantidas.');
     }
 
     // =====================================================
@@ -749,6 +796,7 @@
     }
 
     function logoutAdmin() {
+        // Remove somente a sessão, nunca a conta.
         localStorage.removeItem(CHAVE_SESSAO);
         adminLogado = null;
         atualizarInterface();
@@ -761,7 +809,6 @@
             mostrarCadastro();
         } else {
             mostrarLogin();
-
             document.getElementById('secLogin')
                 .scrollIntoView({ behavior: 'smooth' });
         }
@@ -772,11 +819,13 @@
         const secDashboard = document.getElementById('secDashboard');
         const btnAuth = document.getElementById('btnLoginLogout');
 
-        // Confere novamente se a conta ainda existe.
         const admins = obterAdmins();
 
         if (adminLogado &&
-            !admins.some(a => a.usuario === adminLogado.usuario)) {
+            !admins.some(admin =>
+                admin.usuario.toLowerCase() ===
+                adminLogado.usuario.toLowerCase()
+            )) {
             adminLogado = null;
             localStorage.removeItem(CHAVE_SESSAO);
         }
@@ -834,12 +883,12 @@
 
         const mapaUnico = new Map();
 
-        lista.forEach(p => {
-            const id = p.id || p.numero;
+        lista.forEach(pedido => {
+            const id = pedido.id || pedido.numero;
 
             if (id !== undefined && id !== null &&
                 !mapaUnico.has(String(id))) {
-                mapaUnico.set(String(id), p);
+                mapaUnico.set(String(id), pedido);
             }
         });
 
@@ -860,28 +909,27 @@
         const pedidos = obterTodosPedidos();
         const tbody = document.getElementById('tabelaPedidos');
 
-        tbody.innerHTML = '';
+        tbody.replaceChildren();
 
         let totalFaturamento = 0;
         let countPreparo = 0;
 
         if (pedidos.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="7" class="text-center py-4 text-muted">
-                        Nenhum pedido registrado no sistema ainda.
-                    </td>
-                </tr>`;
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+
+            td.colSpan = 7;
+            td.className = 'text-center py-4 text-muted';
+            td.textContent = 'Nenhum pedido registrado no sistema ainda.';
+
+            tr.appendChild(td);
+            tbody.appendChild(tr);
         }
 
         [...pedidos].reverse().forEach(p => {
             const id = p.id || p.numero || 'N/A';
 
-            let dataHora = p.dataHora || p.data || p.hora || '';
-
-            if (!dataHora) {
-                dataHora = new Date().toLocaleString('pt-BR');
-            }
+            const dataHora = p.dataHora || p.data || p.hora || '';
 
             let localMesa = p.tipoConsumo ||
                             p.cliente ||
@@ -925,13 +973,16 @@
                 itens = p.itens;
             }
 
-            let classe = 'pendente';
             const statusLower = status.toLowerCase();
 
-            if (statusLower.includes('preparo')) classe = 'preparo';
-            else if (statusLower.includes('pronto')) classe = 'pronto';
-            else if (statusLower.includes('concluído') ||
-                     statusLower.includes('finalizado')) {
+            let classe = 'pendente';
+
+            if (statusLower.includes('preparo')) {
+                classe = 'preparo';
+            } else if (statusLower.includes('pronto')) {
+                classe = 'pronto';
+            } else if (statusLower.includes('concluído') ||
+                       statusLower.includes('finalizado')) {
                 classe = 'finalizado';
             }
 
@@ -990,10 +1041,14 @@
             });
 
             const btnExcluir = document.createElement('button');
+            btnExcluir.type = 'button';
             btnExcluir.className = 'btn btn-sm btn-outline-danger';
             btnExcluir.title = 'Excluir';
             btnExcluir.innerHTML = '<i class="fas fa-trash"></i>';
-            btnExcluir.addEventListener('click', () => excluirPedido(id));
+
+            btnExcluir.addEventListener('click', () => {
+                excluirPedido(id);
+            });
 
             grupo.append(select, btnExcluir);
             tdAcoes.appendChild(grupo);
@@ -1051,6 +1106,8 @@
             return;
         }
 
+        // Apaga somente os históricos de pedidos.
+        // As contas administrativas não são alteradas.
         localStorage.removeItem(CHAVE_HISTORICO);
         localStorage.removeItem(CHAVE_STORAGE_SEC);
         localStorage.removeItem(CHAVE_STORAGE_TER);
