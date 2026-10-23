@@ -1,4 +1,4 @@
-package senai.com.br.javacafeteria;
+package senai.com.br.javacafeteria.model;
 
 public enum StatusPedido {
 

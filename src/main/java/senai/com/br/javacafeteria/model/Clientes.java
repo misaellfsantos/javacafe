@@ -1,4 +1,4 @@
-package senai.com.br.javacafeteria;
+package senai.com.br.javacafeteria.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -18,8 +18,6 @@ public class Clientes {
     private String email;
 
     private String telefone;
-
-    // getters e setters
 
     public Long getId() {
         return id;
@@ -51,32 +49,5 @@ public class Clientes {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    @Entity
-    @Table(name = "contas_pagamento")
-    public static class ContaPagamento {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-
-        @OneToOne
-        @JoinColumn(name = "pedido_id", nullable = false)
-        private Pedido pedido;
-
-        @Column(nullable = false)
-        private BigDecimal valor;
-
-        @Enumerated(EnumType.STRING)
-        private FormaPagamento formaPagamento;
-
-        @Enumerated(EnumType.STRING)
-        private StatusPagamento status;
-
-        private LocalDateTime dataPagamento;
-
-
-
     }
 }

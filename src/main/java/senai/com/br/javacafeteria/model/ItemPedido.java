@@ -1,4 +1,4 @@
-package senai.com.br.javacafeteria;
+package senai.com.br.javacafeteria.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
