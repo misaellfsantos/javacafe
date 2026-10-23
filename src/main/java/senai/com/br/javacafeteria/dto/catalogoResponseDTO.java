@@ -1,4 +1,4 @@
 package senai.com.br.javacafeteria.dto;
 
-public class protudorequestDTO {
+public class catalogoResponseDTO {
 }
