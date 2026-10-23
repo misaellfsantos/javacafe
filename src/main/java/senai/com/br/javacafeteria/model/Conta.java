@@ -32,10 +32,7 @@ public class Conta {
     public Conta() {
     }
 
-    public Conta(Long id, Pedido pedido, BigDecimal valor,
-                 FormaPagamento formaPagamento,
-                 StatusPagamento status,
-                 LocalDateTime dataPagamento) {
+    public Conta(Long id, Pedido pedido, BigDecimal valor, FormaPagamento formaPagamento, StatusPagamento status, LocalDateTime dataPagamento) {
         this.id = id;
         this.pedido = pedido;
         this.valor = valor;

@@ -28,6 +28,18 @@ public class Produto {
 
     private Boolean ativo;
 
+    public Produto() {
+    }
+
+    public Produto(Long id, String nome, String descricao, BigDecimal preco, Integer estoque, Boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.estoque = estoque;
+        this.ativo = ativo;
+    }
+
     public Long getId() {
         return id;
     }

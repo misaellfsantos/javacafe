@@ -22,8 +22,18 @@ public class Usuario {
     @Column(nullable = false)
     private String perfil;
 
+    public Usuario() {
+    }
 
-    // Getters e Setters
+    public Usuario(Long id, String nome, String email, String senha, String perfil) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+
+// Getters e Setters
 
     public Long getId() {
         return id;

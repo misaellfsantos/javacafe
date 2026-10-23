@@ -24,8 +24,19 @@ public class ItemPedido {
 
     private BigDecimal subtotal;
 
+    public ItemPedido() {
+    }
 
-    // Getters e Setters
+    public ItemPedido(Long id, Pedido pedido, Produto produto, Integer quantidade, BigDecimal precoUnitario, BigDecimal subtotal) {
+        this.id = id;
+        this.pedido = pedido;
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.precoUnitario = precoUnitario;
+        this.subtotal = subtotal;
+    }
+
+// Getters e Setters
 
     public Long getId() {
         return id;

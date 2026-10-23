@@ -28,7 +28,17 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    public Pedido() {
+    }
 
+    public Pedido(Long id, Clientes cliente, Usuario usuario, List<ItemPedido> itens, LocalDateTime dataPedido, StatusPedido status) {
+        this.id = id;
+        this.cliente = cliente;
+        this.usuario = usuario;
+        this.itens = itens;
+        this.dataPedido = dataPedido;
+        this.status = status;
+    }
 // Getters e Setters
 
     public Long getId() {
