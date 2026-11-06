@@ -1,7 +1,9 @@
+
 package senai.com.br.javacafeteria.service;
 
 import senai.com.br.javacafeteria.model.Usuario;
 import senai.com.br.javacafeteria.repository.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
